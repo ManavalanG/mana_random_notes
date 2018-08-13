@@ -41,7 +41,7 @@ Python module. Failed to extract most of the text. Extracted just small part of 
     pdftotext -layout enc ASCII7 sample.pdf out.txt
     ```
 
-* Recognizing header and footer is not straightforward but can be done by choosing the area of pdthat need to be converted. See this stackoverflow answer.
+* Recognizing header and footer is not straightforward but can be done by choosing the area of pdf tthat need to be converted. See this [stackoverflow answer](https://stackoverflow.com/a/35005347/3998252).
 
 * What worked for me in my case for phenotips file
 
