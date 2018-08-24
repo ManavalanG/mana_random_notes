@@ -1,5 +1,6 @@
 - [Using lambda functions inside rules](#using-lambda-functions-inside-rules)
 - [Using dictionary with wildcards as keys](#using-dictionary-with-wildcards-as-keys)
+- [`zip` with >2 wildcards](#zip-with-2-wildcards)
 - [Using bash script that sends its own job in a snakemake rule](#using-bash-script-that-sends-its-own-job-in-a-snakemake-rule)
 - [Sourcing `.bashrc` as part of shell command in snakemake rule](#sourcing-bashrc-as-part-of-shell-command-in-snakemake-rule)
 
@@ -44,6 +45,18 @@ rule extract_Adjusted_AC_AN_exac:
 input:
     bams = lambda wildcards: dict_name[wildcards.sample]
 ```
+
+
+## `zip` with >2 wildcards
+Use multiple `expand`. Example:
+```
+expand(expand(
+    ANALYSIS + "/{sample_g}_vs_{sample_t}/Stelka/results/variants/somatic.{{typevar}}_Filtered",
+            zip, sample_g=GERMLINE, sample_t=TUMOR), 
+            typevar=TYPEVAR)
+```
+[Source](https://stackoverflow.com/a/48864284/3998252)
+
 
 ## Using bash script that sends its own job in a snakemake rule
 
