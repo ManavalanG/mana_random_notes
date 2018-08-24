@@ -1,12 +1,20 @@
-- [awk](#awk)
-- [cut](#cut)
-- [paste](#paste)
-- [datamash](#datamash)
-- [Pretty json](#pretty-json)
-- [Viewing CSV files in terminal](#viewing-csv-files-in-terminal)
-- [Recursive download of folder contents using wget](#recursive-download-of-folder-contents-using-wget)
-- [sshfs in Mac](#sshfs-in-mac)
-- [md5sum](#md5sum)
+- [Text Processing](#text-processing)
+    - [awk](#awk)
+    - [cut](#cut)
+    - [paste](#paste)
+- [Numeric, textual and statistical operations](#numeric-textual-and-statistical-operations)
+    - [datamash](#datamash)
+- [Prettifying](#prettifying)
+    - [Pretty json](#pretty-json)
+    - [Viewing CSV files in terminal](#viewing-csv-files-in-terminal)
+- [Others](#others)
+    - [Recursive download of folder contents using wget](#recursive-download-of-folder-contents-using-wget)
+    - [sshfs in Mac](#sshfs-in-mac)
+    - [md5sum](#md5sum)
+    - [Redirecting output to both stdout and file](#redirecting-output-to-both-stdout-and-file)
+
+
+# Text Processing
 
 ## awk
 
@@ -83,11 +91,16 @@ D   4
 
 
 
+#  Numeric, textual and statistical operations 
+
 ## datamash
 
 Commandline tool to get statistics.
 [Documentation](https://www.gnu.org/software/datamash/manual/datamash.html)
 
+
+
+# Prettifying
 
 ## Pretty json
 
@@ -103,6 +116,8 @@ Warning: Apparently many pretty json formatters may have [problem handling very 
 csvtool readable filename
 ```
 
+
+# Others
 
 ## Recursive download of folder contents using wget
 
@@ -144,4 +159,21 @@ md5sum -c <<<"[checksum_string] [downloaded_fname]"
 ```
 
 
+## Redirecting output to both stdout and file
+
+If you only care about stdout:
+
+    ls -a | tee output.file
+
+If you want to include stderr, do:
+
+    program [arguments...] 2>&1 | tee outfile
+
+`2>&1` redirects channel 2 (stderr/standard error) into channel 1 (stdout/standard output), such that both is written as stdout. It is also directed to the given output file as of the `tee` command.
+
+Furthermore, if you want to _append_ to the log file, use `tee -a` as:
+
+    program [arguments...] 2>&1 | tee -a outfile
+
+[Source](https://stackoverflow.com/a/418899/3998252)
 
