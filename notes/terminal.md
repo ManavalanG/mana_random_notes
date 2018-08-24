@@ -7,6 +7,7 @@
 - [Prettifying](#prettifying)
     - [Pretty json](#pretty-json)
     - [Viewing CSV files in terminal](#viewing-csv-files-in-terminal)
+    - [Preserving colors when redirecting to file](#preserving-colors-when-redirecting-to-file)
 - [Others](#others)
     - [Recursive download of folder contents using wget](#recursive-download-of-folder-contents-using-wget)
     - [sshfs in Mac](#sshfs-in-mac)
@@ -115,6 +116,17 @@ Warning: Apparently many pretty json formatters may have [problem handling very 
 ```
 csvtool readable filename
 ```
+
+
+## Preserving colors when redirecting to file
+
+Simply insert `unbuffer` before any command to make it think it is writing to an interactive output even if it is actually piping into another executable. 
+
+If colors are not visible with `less`, use `less -R`.
+
+Works with `nohup` as well.
+
+[Source](https://superuser.com/a/751809)
 
 
 # Others
