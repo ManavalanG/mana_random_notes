@@ -13,6 +13,7 @@
     - [sshfs in Mac](#sshfs-in-mac)
     - [md5sum](#md5sum)
     - [Redirecting output to both stdout and file](#redirecting-output-to-both-stdout-and-file)
+    - [Save HTML webpage as screenshot](#save-html-webpage-as-screenshot)
 
 
 # Text Processing
@@ -188,4 +189,17 @@ Furthermore, if you want to _append_ to the log file, use `tee -a` as:
     program [arguments...] 2>&1 | tee -a outfile
 
 [Source](https://stackoverflow.com/a/418899/3998252)
+
+
+## Save HTML webpage as screenshot
+
+[Multiple ways to save webpage as a screenshot image](http://cutycapt.sourceforge.net/)
+
+[pageres](https://github.com/sindresorhus/pageres-cli) worked well.
+
+```
+pageres google.com
+
+pageres google.com 2048x1080
+```
 
