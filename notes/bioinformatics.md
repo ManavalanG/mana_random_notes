@@ -1,3 +1,10 @@
+- [Helpful resources](#helpful-resources)
+    - [One-liners](#one-liners)
+- [fastq](#fastq)
+    - [Downsample fastq](#downsample-fastq)
+        - [BBMap's reformat.sh](#bbmaps-reformatsh)
+    - [fastq base count](#fastq-base-count)
+    - [Extract fastq reads by id](#extract-fastq-reads-by-id)
 
 
 # Helpful resources
@@ -36,4 +43,12 @@
     reformat.sh in={input} \\
             2> {output}
     ```
+
+
+## Extract fastq reads by id
+    
+    ```
+    seqtk subseq in.fq name.lst > out.fq
+    ```
+    [Source](https://www.biostars.org/p/45356/#45357)
     
