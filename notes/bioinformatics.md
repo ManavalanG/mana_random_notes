@@ -50,5 +50,6 @@
     ```
     seqtk subseq in.fq name.lst > out.fq
     ```
-    [Source](https://www.biostars.org/p/45356/#45357)
+   
+ [Source](https://www.biostars.org/p/45356/#45357)
     

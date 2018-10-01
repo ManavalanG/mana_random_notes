@@ -166,9 +166,22 @@ sudo umount -f /mnt/cluster
  
  ## md5sum
 
+Creating checksum
 ```
+# create checksum
+md5sum <filename>
+
+# can use multiple files at once
+md5sum <filename1> <filename2> <filename3>
+```
+
+Checking for integrity
+```
+# using file contaiing checksum strings
+md5sum -c <md5_file>
+
 # checksum with string directly
-md5sum -c <<<"[checksum_string] [downloaded_fname]"
+md5sum -c <<<"[checksum_string] [filename]"
 ```
 
 
