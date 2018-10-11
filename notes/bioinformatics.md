@@ -5,6 +5,7 @@
         - [BBMap's reformat.sh](#bbmaps-reformatsh)
     - [fastq base count](#fastq-base-count)
     - [Extract fastq reads by id](#extract-fastq-reads-by-id)
+    - [fastq format validation](#fastq-format-validation)
 
 
 # Helpful resources
@@ -53,3 +54,16 @@
    
  [Source](https://www.biostars.org/p/45356/#45357)
     
+
+## fastq format validation
+
+Tool [FastQValidator](https://genome.sph.umich.edu/wiki/FastQValidator)
+
+Note: 
+Installation of release version `0.1.1a` resulted in error, and it was resolved based on [solution here](https://vcru.wisc.edu/simonlab/bioinformatics/programs/install/fastqvalidator.htm). In short, `libStatGen` supplied was out of date, and was obtained directly from its source.
+
+```
+rm libStatGen -r
+git clone git://github.com/statgen/libStatGen.git
+make
+```
