@@ -6,7 +6,6 @@
     - [fastq base count](#fastq-base-count)
     - [Extract fastq reads by id](#extract-fastq-reads-by-id)
     - [Filter fastq by sequence length](#filter-fastq-by-sequence-length)
-- [usage example](#usage-example)
     - [fastq format validation](#fastq-format-validation)
 
 
@@ -60,14 +59,14 @@
 ## Filter fastq by sequence length
 Script `filter_fasta_by_seq_length.pl` from [ampli-tools](https://github.com/timkahlke/ampli-tools).
 
-```
-# usage example
-FILT_SIZE=10000
-filter_fasta_by_seq_length.pl  \
-        -i <IN_FASTA> \
-        -o <FILTERED_FASTA> \
-        -a ${FILT_SIZE}
-```
+    ```
+    # usage example
+    FILT_SIZE=10000
+    filter_fasta_by_seq_length.pl  \
+            -i <IN_FASTA> \
+            -o <FILTERED_FASTA> \
+            -a ${FILT_SIZE}
+    ```
 
 
 
