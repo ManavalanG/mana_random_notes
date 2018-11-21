@@ -11,7 +11,6 @@
 - [Others](#others)
     - [Recursive download of folder contents using wget](#recursive-download-of-folder-contents-using-wget)
     - [sshfs in Mac](#sshfs-in-mac)
-    - [md5sum](#md5sum)
     - [Redirecting output to both stdout and file](#redirecting-output-to-both-stdout-and-file)
     - [Save HTML webpage as screenshot](#save-html-webpage-as-screenshot)
 
@@ -20,7 +19,7 @@
 
 ## awk
 
-```
+```sh
 ## GENERAL STUFF
 # print first column
 awk '{print $1}'
@@ -53,25 +52,28 @@ awk '{print NR ") " $1 " -> " $(NF-2)}'
 # slice range of columns
 Better to use cut command. See elsewhere in this page.
 ```
+
 [Source](https://gregable.com/2010/09/why-you-should-know-just-little-awk.html)
 
 
 ## cut
 
-```
+```sh
 # print from 3rd column
 cut -f 3- INPUTFILE
  
 # print upto 3rd column
 cut -f -3 INPUTFILE
 ```
+
 [Source](https://stackoverflow.com/a/1602220/3998252)
 
 
 ## paste
 
 Allows combining file as columns side by side.
-```
+
+```sh
 # example
 $ cat a
 A
@@ -89,11 +91,12 @@ B   2
 C   3
 D   4
 ```
+
 [Source](https://unix.stackexchange.com/a/117590)
 
 
 
-#  Numeric, textual and statistical operations 
+# Numeric, textual and statistical operations 
 
 ## datamash
 
@@ -101,20 +104,20 @@ Commandline tool to get statistics.
 [Documentation](https://www.gnu.org/software/datamash/manual/datamash.html)
 
 
-
 # Prettifying
 
 ## Pretty json
 
-```
+```sh
 curl 'url' | jq . > out.json
 ```
+
 Warning: Apparently many pretty json formatters may have [problem handling very large and very small numbers](http://stackoverflow.com/questions/352098/how-can-i-pretty-print-json#comment52647558_15231463).
 
 
 ## Viewing CSV files in terminal
 
-```
+```sh
 csvtool readable filename
 ```
 
@@ -134,7 +137,7 @@ Works with `nohup` as well.
 
 ## Recursive download of folder contents using wget
 
-```
+```sh
 wget -r url
 ```
 
@@ -147,7 +150,8 @@ Above command preserved the directory structure, but instead of downloading from
 ## sshfs in Mac
 
 Install appropriate OSX Fuse and then use following commands:
-```
+
+```sh
 # to mount from root
 sudo sshfs -o allow_other,defer_permissions username@address.org:/ /mnt/cluster/
  
@@ -167,7 +171,8 @@ sudo umount -f /mnt/cluster
  ## md5sum
 
 Creating checksum
-```
+
+```sh
 # create checksum
 md5sum <filename>
 
@@ -176,7 +181,8 @@ md5sum <filename1> <filename2> <filename3>
 ```
 
 Checking for integrity
-```
+
+```sh
 # using file contaiing checksum strings
 md5sum -c <md5_file>
 
@@ -210,7 +216,7 @@ Furthermore, if you want to _append_ to the log file, use `tee -a` as:
 
 [pageres](https://github.com/sindresorhus/pageres-cli) worked well.
 
-```
+```sh
 pageres google.com
 
 pageres google.com 2048x1080

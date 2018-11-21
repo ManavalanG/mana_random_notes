@@ -8,7 +8,7 @@
 
 ## Basic (sorta) pipeline
 
-```
+```sh
 # build docker in workdir
 docker build -f Dockerfile -t image_name .
 
@@ -27,7 +27,7 @@ docker run image_name
 
 [Source](https://docs.docker.com/engine/reference/commandline/run/)
 
-```
+```sh
 --workdir , -w 		Working directory inside the container
 
 --volume , -v 		Bind mount a volume

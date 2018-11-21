@@ -1,5 +1,5 @@
 - [Extract text from PDF](#extract-text-from-pdf)
-    - [Tools Tried:](#tools-tried)
+    - [Tools Tried](#tools-tried)
         - [pypdf2](#pypdf2)
         - [pdfminder](#pdfminder)
         - [pdftotext](#pdftotext)
@@ -7,7 +7,7 @@
 
 # Extract text from PDF
 
-## Tools Tried:
+## Tools Tried
 
 Following are based on my attempts to extract phenotype data from phenotips file.  These may not necessarily be true/apply for other pdf files.
 
@@ -18,19 +18,20 @@ Python module. Failed to extract most of the text. Extracted just small part of 
 
 ### pdfminder
 
-* Command line tool
-* Required installation from source.
-* Worked reasonably well. Seemed to extract most of the text, if not all.
-* Has -layout_mode option to preserve the layout of text as in pdf. Haven't tried though.
-* Doesn't seem to allow ignoring header/footer though
+- Command line tool
+- Required installation from source.
+- Worked reasonably well. Seemed to extract most of the text, if not all.
+- Has -layout_mode option to preserve the layout of text as in pdf. Haven't tried though.
+- Doesn't seem to allow ignoring header/footer though
 
 
 ### pdftotext
 
-* Command line tool
+- Command line tool
 
-* Installed in mac - "brew install poppler". It's part of poppler suite.
-    ```
+- Installed in mac - "brew install poppler". It's part of poppler suite.
+  
+    ```sh
     # simple conversion
     pdftotext sample.pdf out.txt
     
@@ -41,10 +42,10 @@ Python module. Failed to extract most of the text. Extracted just small part of 
     pdftotext -layout enc ASCII7 sample.pdf out.txt
     ```
 
-* Recognizing header and footer is not straightforward but can be done by choosing the area of pdf tthat need to be converted. See this [stackoverflow answer](https://stackoverflow.com/a/35005347/3998252).
+- Recognizing header and footer is not straightforward but can be done by choosing the area of pdf tthat need to be converted. See this [stackoverflow answer](https://stackoverflow.com/a/35005347/3998252).
 
-* What worked for me in my case for phenotips file
+- What worked for me in my case for phenotips file
 
-    ```
+    ```sh
     pdftotext -layout enc ASCII7 -y 80 -H 640 -W 1000 sample.pdf out.txt
     ```
