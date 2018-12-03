@@ -50,26 +50,26 @@
 
 
 ## Extract fastq reads by id
-    
-    ```sh
-    seqtk subseq in.fq name.lst > out.fq
-    ```
-    
- [Source](https://www.biostars.org/p/45356/#45357)
+
+```sh
+seqtk subseq in.fq name.lst > out.fq
+```
+
+[Source](https://www.biostars.org/p/45356/#45357)
     
 
 ## Filter fastq by sequence length
 
 Script `filter_fasta_by_seq_length.pl` from [ampli-tools](https://github.com/timkahlke/ampli-tools).
 
-    ```sh
-    # usage example
-    FILT_SIZE=10000
-    filter_fasta_by_seq_length.pl  \
-            -i <IN_FASTA> \
-            -o <FILTERED_FASTA> \
-            -a ${FILT_SIZE}
-    ```
+```sh
+# usage example
+FILT_SIZE=10000
+filter_fasta_by_seq_length.pl  \
+        -i <IN_FASTA> \
+        -o <FILTERED_FASTA> \
+        -a ${FILT_SIZE}
+```
 
 
 ## fastq format validation
