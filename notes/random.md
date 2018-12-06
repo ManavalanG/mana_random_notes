@@ -3,6 +3,7 @@
         - [pypdf2](#pypdf2)
         - [pdfminder](#pdfminder)
         - [pdftotext](#pdftotext)
+- [Convert Excel xlsx to csv](#convert-excel-xlsx-to-csv)
 
 
 # Extract text from PDF
@@ -49,3 +50,9 @@ Python module. Failed to extract most of the text. Extracted just small part of 
     ```sh
     pdftotext -layout enc ASCII7 -y 80 -H 640 -W 1000 sample.pdf out.txt
     ```
+
+# Convert Excel xlsx to csv
+
+- [xlsx2csv](https://github.com/dilshod/xlsx2csv)
+    - Easy to install; Worked well in my try.
+- [More tools](https://stackoverflow.com/questions/10557360/convert-xlsx-to-csv-in-linux-with-command-line)
