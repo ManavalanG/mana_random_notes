@@ -1,37 +1,38 @@
 - [pandas](#pandas)
-    - [Print without breaking rows/columns](#print-without-breaking-rowscolumns)
-    - [Replace NaN in one column with value from corresponding row of second column](#replace-nan-in-one-column-with-value-from-corresponding-row-of-second-column)
-    - [Identify rows with NaN values](#identify-rows-with-nan-values)
-    - [Conditionally replace values](#conditionally-replace-values)
-    - [Remove columns](#remove-columns)
-    - [Splitting column into multiple columns](#splitting-column-into-multiple-columns)
-    - [Extract strings by position into new column](#extract-strings-by-position-into-new-column)
-    - [Dataframe in percentage](#dataframe-in-percentage)
-    - [Sorting multilevel dataframe (pivot table)](#sorting-multilevel-dataframe-pivot-table)
-    - [Adding new column with mapped value from a dictionary](#adding-new-column-with-mapped-value-from-a-dictionary)
-    - [Make dictionary from Pandas columns](#make-dictionary-from-pandas-columns)
-    - [Convert dataframe to file object](#convert-dataframe-to-file-object)
-    - [Rename column name](#rename-column-name)
-    - [Ignore commented lines when reading files](#ignore-commented-lines-when-reading-files)
-    - [Reading massive files in chunks](#reading-massive-files-in-chunks)
-    - [Checking if item is NaN or not:](#checking-if-item-is-nan-or-not)
+  - [Print without breaking rows/columns](#print-without-breaking-rowscolumns)
+  - [Replace NaN in one column with value from corresponding row of second column](#replace-nan-in-one-column-with-value-from-corresponding-row-of-second-column)
+  - [Identify rows with NaN values](#identify-rows-with-nan-values)
+  - [Conditionally replace values](#conditionally-replace-values)
+  - [Remove columns](#remove-columns)
+  - [Splitting column into multiple columns](#splitting-column-into-multiple-columns)
+  - [Extract strings by position into new column](#extract-strings-by-position-into-new-column)
+  - [Dataframe in percentage](#dataframe-in-percentage)
+  - [Sorting multilevel dataframe (pivot table)](#sorting-multilevel-dataframe-pivot-table)
+  - [Adding new column with mapped value from a dictionary](#adding-new-column-with-mapped-value-from-a-dictionary)
+  - [Make dictionary from Pandas columns](#make-dictionary-from-pandas-columns)
+  - [Convert dataframe to file object](#convert-dataframe-to-file-object)
+  - [Rename column name](#rename-column-name)
+  - [Ignore commented lines when reading files](#ignore-commented-lines-when-reading-files)
+  - [Reading massive files in chunks](#reading-massive-files-in-chunks)
+  - [Checking if item is NaN or not:](#checking-if-item-is-nan-or-not)
 - [Charts](#charts)
-    - [Creating reproducible charts](#creating-reproducible-charts)
-    - [Why use fig, ax = plt.subplots():](#why-use-fig-ax--pltsubplots)
-    - [Change figure parameters globally for all figures in a script](#change-figure-parameters-globally-for-all-figures-in-a-script)
-    - [Legends for chart with two Y-axes](#legends-for-chart-with-two-y-axes)
-    - [Force axis tick labels to be integers](#force-axis-tick-labels-to-be-integers)
-    - [xticks and xtick_labels](#xticks-and-xticklabels)
-    - [importing matplotlib in cluster](#importing-matplotlib-in-cluster)
-    - [Axis in exponential format](#axis-in-exponential-format)
-    - [Legend positioning without crowding](#legend-positioning-without-crowding)
+  - [Creating reproducible charts](#creating-reproducible-charts)
+  - [Why use fig, ax = plt.subplots():](#why-use-fig-ax--pltsubplots)
+  - [Change figure parameters globally for all figures in a script](#change-figure-parameters-globally-for-all-figures-in-a-script)
+  - [Legends for chart with two Y-axes](#legends-for-chart-with-two-y-axes)
+  - [Force axis tick labels to be integers](#force-axis-tick-labels-to-be-integers)
+  - [xticks and xtick_labels](#xticks-and-xticklabels)
+  - [importing matplotlib in cluster](#importing-matplotlib-in-cluster)
+  - [Axis in exponential format](#axis-in-exponential-format)
+  - [Legend positioning without crowding](#legend-positioning-without-crowding)
 - [Virtual environment](#virtual-environment)
-    - [pipenv](#pipenv)
+  - [pipenv](#pipenv)
 - [pytest](#pytest)
-    - [Avoiding .pyc files created when running pytest](#avoiding-pyc-files-created-when-running-pytest)
-    - [Disable per-test capturing](#disable-per-test-capturing)
-    - [Parametrizing test functions](#parametrizing-test-functions)
-    - [Coverage](#coverage)
+  - [Avoiding .pyc files created when running pytest](#avoiding-pyc-files-created-when-running-pytest)
+  - [Disable per-test capturing](#disable-per-test-capturing)
+  - [Parametrizing test functions](#parametrizing-test-functions)
+  - [Coverage](#coverage)
+- [temp files/dir](#temp-filesdir)
 
 
 # pandas
@@ -454,4 +455,28 @@ Generate reports:
 `py.test --cov-report term --cov=myproj tests/`
 
 --cov-report takes values html, xml, term and annotate
+
+
+# temp files/dir
+
+[Built-in module `tempfile`](https://docs.python.org/2/library/tempfile.html) helps to easily manage temp files/dirs. They will get deleted automatically when the script exits, unless mentioned otherwise.  They can be named or unnamed.
+
+Example:
+```py
+import tempfile
+
+tmp = tempfile.NamedTemporaryFile()
+
+# Open the file for writing. NOTICE calling 'tmp.name' instead of just `tmp'. 
+with open(tmp.name, 'w') as f:
+    f.write(stuff) # where `stuff` is, y'know... stuff to write (a string)
+
+...
+
+# Open the file for reading. NOTICE calling 'tmp.name' instead of just `tmp'
+with open(tmp.name) as f:
+    for line in f:
+        ... # more things here
+```
+
 
