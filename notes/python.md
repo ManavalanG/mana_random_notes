@@ -410,7 +410,7 @@ pipenv run python script.py
 
 ### Jupyter notebook
 
-Running jupyter notebook under pipenv is possible. See [jupyter_notebook.md](jupyter_notebook.md##in-virtual-environment-mode) (./blob/master/notes/jupyter_notebook.md)
+Running jupyter notebook under pipenv is possible. See [jupyter_notebook.md](jupyter_notebook.md##in-virtual-environment-mode)
 
 # pytest
 
