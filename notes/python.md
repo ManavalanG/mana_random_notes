@@ -27,6 +27,7 @@
   - [Legend positioning without crowding](#legend-positioning-without-crowding)
 - [Virtual environment](#virtual-environment)
   - [pipenv](#pipenv)
+    - [Jupyter notebook](#jupyter-notebook)
 - [pytest](#pytest)
   - [Avoiding .pyc files created when running pytest](#avoiding-pyc-files-created-when-running-pytest)
   - [Disable per-test capturing](#disable-per-test-capturing)
@@ -407,6 +408,9 @@ pipenv run python script.py
 ```
  
 
+### Jupyter notebook
+
+Running jupyter notebook under pipenv is possible. See [jupyter_notebook.md](jupyter_notebook.md##in-virtual-environment-mode) (./blob/master/notes/jupyter_notebook.md)
 
 # pytest
 

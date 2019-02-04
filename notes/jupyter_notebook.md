@@ -1,6 +1,7 @@
 - [High-resolution plot outputs for high resolution monitors](#high-resolution-plot-outputs-for-high-resolution-monitors)
 - [Pretty display of multiple variables](#pretty-display-of-multiple-variables)
 - [Execute notebook from command line](#execute-notebook-from-command-line)
+- [In virtual environment mode](#in-virtual-environment-mode)
 
 
 ## High-resolution plot outputs for high resolution monitors
@@ -47,5 +48,21 @@ jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=None --i
 To get around cell timeout when running from commandline. use "--ExecutePreprocessor.timeout=None".
 
 
+## In virtual environment mode
 
+Use of Jupyter notebook in virtual environment is easy to manage via `pipenv`
+
+```sh
+pipenv install jupyter
+
+# to open a session
+pipenv run jupyter notebook
+
+# to run them in commandline via nbconvert
+## install extensions
+pipenv install jupyter_contrib_nbextensions
+
+## run nbconvert 
+pipenv run jupyter nbconvert --<other_flags/params>
+```
 
