@@ -1,9 +1,16 @@
 - [Extract text from PDF](#extract-text-from-pdf)
-    - [Tools Tried](#tools-tried)
-        - [pypdf2](#pypdf2)
-        - [pdfminder](#pdfminder)
-        - [pdftotext](#pdftotext)
+  - [Tools Tried](#tools-tried)
+    - [pypdf2](#pypdf2)
+    - [pdfminder](#pdfminder)
+    - [pdftotext](#pdftotext)
 - [Convert Excel xlsx to csv](#convert-excel-xlsx-to-csv)
+- [UCSC genome browser](#ucsc-genome-browser)
+  - [Interesting features](#interesting-features)
+    - [See settings used in text format](#see-settings-used-in-text-format)
+    - [Short match](#short-match)
+    - [Show DNA seqs in color based on features](#show-dna-seqs-in-color-based-on-features)
+    - [Primer design](#primer-design)
+    - [Save snapshots](#save-snapshots)
 
 
 # Extract text from PDF
@@ -56,3 +63,38 @@ Python module. Failed to extract most of the text. Extracted just small part of 
 - [xlsx2csv](https://github.com/dilshod/xlsx2csv)
     - Easy to install; Worked well in my try.
 - [More tools](https://stackoverflow.com/questions/10557360/convert-xlsx-to-csv-in-linux-with-command-line)
+
+
+# UCSC genome browser
+
+## Interesting features
+
+### See settings used in text format
+
+Either of these would do:
+
+- Replace existing url with http://genome.ucsc.edu/cgi-bin/cartDump to see the settings used in text format
+- Save settings file via `my data` -> `my session` -> `save settings`
+
+
+### Short match
+
+BLAT is useful is seq is >20 bases. For shorted sequences (2-30 bases), [short match](http://genome.ucsc.edu/cgi-bin/hgTrackUi?hgsid=711072351_fyVRofGkapbguvAvVWR9j2gJjgoN&c=chr16&g=oligoMatch) should work better.
+
+
+### Show DNA seqs in color based on features
+
+[Source](https://genome.ucsc.edu/goldenpath/help/hgTracksHelp.html#TrackFormatDNA)
+
+Can be used to color and toggle case for sections of DNA (exon, SNP, etc.)
+
+### Primer design
+
+[Source](http://genome.ucsc.edu/cgi-bin/hgPcr)
+
+### Save snapshots
+
+* `View` -> `PDF/PS`
+* Change `hgTracks` to `hgRenderTracks` in url to get the png output
+    http://genome.ucsc.edu/cgi-bin/hgRenderTracks?parameters
+
