@@ -2,6 +2,7 @@
 - [Pretty display of multiple variables](#pretty-display-of-multiple-variables)
 - [Execute notebook from command line](#execute-notebook-from-command-line)
 - [In virtual environment mode](#in-virtual-environment-mode)
+- [Change working dir for the notebook](#change-working-dir-for-the-notebook)
 
 
 ## High-resolution plot outputs for high resolution monitors
@@ -66,3 +67,13 @@ pipenv install jupyter_contrib_nbextensions
 pipenv run jupyter nbconvert --<other_flags/params>
 ```
 
+
+## Change working dir for the notebook
+
+```py
+import os
+os.chdir('..')
+print (f"Working dir: {os.getcwd()}")
+```
+
+[Source](https://stackoverflow.com/a/35665295/3998252)
