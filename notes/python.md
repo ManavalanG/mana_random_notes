@@ -25,6 +25,7 @@
   - [importing matplotlib in cluster](#importing-matplotlib-in-cluster)
   - [Axis in exponential format](#axis-in-exponential-format)
   - [Legend positioning without crowding](#legend-positioning-without-crowding)
+  - [constrained_layout](#constrainedlayout)
 - [Virtual environment](#virtual-environment)
   - [pipenv](#pipenv)
     - [Jupyter notebook](#jupyter-notebook)
@@ -343,7 +344,19 @@ handles, labels = ax.get_legend_handles_labels()
 ax.legend(handles, labels, loc='center left', bbox_to_anchor=(1, 0.5))
 ```
 
- 
+
+## constrained_layout
+
+> constrained_layout automatically adjusts subplots and decorations like legends and colorbars so that they fit in the figure window while still preserving, as best they can, the logical layout requested by the user.
+
+**Warning**: Constrained Layout is experimental for matplot v3
+
+```py
+plt.subplots(constrained_layout=True)
+```
+
+[Source](https://matplotlib.org/tutorials/intermediate/constrainedlayout_guide.html)
+
 # Virtual environment
 
 ## pipenv
