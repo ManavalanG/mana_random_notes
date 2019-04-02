@@ -26,6 +26,9 @@
   - [Axis in exponential format](#axis-in-exponential-format)
   - [Legend positioning without crowding](#legend-positioning-without-crowding)
   - [constrained_layout](#constrainedlayout)
+- [logging](#logging)
+  - [Boilerplate using `colorlog`](#boilerplate-using-colorlog)
+    - [Capturing stack traces](#capturing-stack-traces)
 - [Virtual environment](#virtual-environment)
   - [pipenv](#pipenv)
     - [Jupyter notebook](#jupyter-notebook)
@@ -356,6 +359,54 @@ plt.subplots(constrained_layout=True)
 ```
 
 [Source](https://matplotlib.org/tutorials/intermediate/constrainedlayout_guide.html)
+
+
+# logging
+
+## Boilerplate using `colorlog`
+
+[`colorlog`](https://github.com/borntyping/python-colorlog) makes logs colorful and works across OS platforms.
+
+```py
+import colorlog
+
+logger = colorlog.getLogger(__name__)  
+logger.setLevel(colorlog.colorlog.logging.DEBUG)  
+
+handler = colorlog.StreamHandler()
+handler.setFormatter(colorlog.ColoredFormatter(
+		"%(log_color)s%(asctime)s %(name)s %(levelname)-8s %(message)s",
+		datefmt="%m-%d-%y %H:%M:%S"))
+logger.addHandler(handler)
+```
+
+Why use `__name__`?
+> The name of the logger corresponding to the __name__ variable is logged as __main__, which is the name Python assigns to the module where execution starts. If this file is imported by some other module, then the __name__ variable would correspond to its name logging_example. Here’s how it would look:
+[Source](https://realpython.com/python-logging/)
+
+
+Levels available example:
+```py
+logger.debug("Debug message")
+logger.info("Information message")
+logger.warning("Warning message")
+logger.error("Error message")
+logger.critical("Critical message")
+```
+
+### Capturing stack traces
+
+Use `exc_info=True` with `error` level.
+
+```py
+logging.error("Exception occurred", exc_info=True)
+```
+
+Shortcut for above:
+```py
+logging.exception("Exception occurred")
+```
+
 
 # Virtual environment
 
