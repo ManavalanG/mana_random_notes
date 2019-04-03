@@ -439,7 +439,7 @@ logger = logging.getLogger(__name__)
 Above config based setup works for multiple modules as well.
 Example: 
 
-*Module file:*
+*Module file:* `xxx.py`
 
 ```py
 import logging.config
@@ -455,7 +455,7 @@ if __name__ == '__main__':
     xxx()
 ```
 
-*Main file:*
+*Main file:* `main.py`
 
 ```py
 import xxx
