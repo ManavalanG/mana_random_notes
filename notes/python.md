@@ -28,7 +28,9 @@
   - [constrained_layout](#constrainedlayout)
 - [logging](#logging)
   - [Boilerplate using `colorlog`](#boilerplate-using-colorlog)
-    - [Capturing stack traces](#capturing-stack-traces)
+  - [Using `fileConfig`](#using-fileconfig)
+    - [logging in modules](#logging-in-modules)
+  - [Capturing stack traces](#capturing-stack-traces)
 - [Virtual environment](#virtual-environment)
   - [pipenv](#pipenv)
     - [Jupyter notebook](#jupyter-notebook)
@@ -394,7 +396,86 @@ logger.error("Error message")
 logger.critical("Critical message")
 ```
 
-### Capturing stack traces
+## Using `fileConfig`
+
+Setup config file 
+
+```ini
+[loggers]
+keys=root
+
+[logger_root]
+handlers=stream
+level=DEBUG
+
+[formatters]
+keys=color
+
+[formatter_color]
+class=colorlog.ColoredFormatter
+format=%(log_color)s%(asctime)s %(name)-12s %(levelname)-8s%(reset)s %(message)s
+datefmt=%m-%d-%y %H:%M:%S
+
+[handlers]
+keys=stream
+
+[handler_stream]
+class=StreamHandler
+formatter=color
+args=(sys.stdout,)
+```
+
+Use this config in script as below. Note that, in this implementation, 
+`colorlog` will be imported as config file uses `colorlog` formatter.
+
+```py
+import logging.config
+logging.config.fileConfig('config.ini', disable_existing_loggers=False)
+logger = logging.getLogger(__name__)
+```
+
+### logging in modules
+
+Above config based setup works for multiple modules as well.
+Example: 
+
+*Module file:*
+
+```py
+import logging.config
+logging.config.fileConfig('config.ini', disable_existing_loggers=False)
+logger = logging.getLogger(__name__)
+
+def xxx():
+    logger.info('info msg')
+    logger.warning('warning msg')
+    return None
+
+if __name__ == '__main__':
+    xxx()
+```
+
+*Main file:*
+
+```py
+import xxx
+import logging.config
+logging.config.fileConfig('config.ini', disable_existing_loggers=False)
+logger = logging.getLogger(__name__)
+
+def main():
+    logger.info('main script message')
+    xxx.xxx()
+    return None
+
+
+if __name__ == '__main__':
+    main()
+```
+[Source](https://stackoverflow.com/a/15735146/3998252)
+
+
+## Capturing stack traces
 
 Use `exc_info=True` with `error` level.
 
