@@ -30,6 +30,7 @@
   - [Boilerplate using `colorlog`](#boilerplate-using-colorlog)
   - [Using `fileConfig`](#using-fileconfig)
     - [logging in modules](#logging-in-modules)
+  - [Disable logs from specific libraries](#disable-logs-from-specific-libraries)
   - [Capturing stack traces](#capturing-stack-traces)
 - [Virtual environment](#virtual-environment)
   - [pipenv](#pipenv)
@@ -473,6 +474,18 @@ if __name__ == '__main__':
     main()
 ```
 [Source](https://stackoverflow.com/a/15735146/3998252)
+
+
+## Disable logs from specific libraries
+
+When logging in debug mode, logs from some third party python libraries (eg.: matplotlib, requests)
+are also produced. To turn them off:
+
+```py
+# Add this code after code for logging config
+logging.getLogger('matplotlib').setLevel(logging.WARNING)
+```
+[Source](https://stackoverflow.com/a/51529172/3998252)
 
 
 ## Capturing stack traces
