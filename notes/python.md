@@ -36,9 +36,10 @@
   - [pipenv](#pipenv)
     - [Jupyter notebook](#jupyter-notebook)
 - [pytest](#pytest)
-  - [Avoiding .pyc files created when running pytest](#avoiding-pyc-files-created-when-running-pytest)
-  - [Disable per-test capturing](#disable-per-test-capturing)
-  - [Parametrizing test functions](#parametrizing-test-functions)
+  - [Random tips](#random-tips)
+  - [Testing multiple paramters for a test](#testing-multiple-paramters-for-a-test)
+  - [Using parameters with fixtures](#using-parameters-with-fixtures)
+  - [xfail](#xfail)
   - [Coverage](#coverage)
 - [temp files/dir](#temp-filesdir)
 
@@ -512,19 +513,19 @@ a. Creating new/fresh virtual environment
 
 ```py
 cd project_dir
- 
+
 # to initiate pipenv virtual env
 pipenv install
- 
+
 # to install required packages
 pipenv install [packages]
- 
+
 # **IMPORTANT** To LOCK pipfile with EXACT version info
 pipenv lock
- 
+
 # activate virtual environment
 pipenv shell
- 
+
 # exit virtual environment
 exit
 ```
@@ -533,10 +534,10 @@ b. Recreating virtual environment from Pipfile
 ```py
 # installs all packages from Pipfile
 pipenv install
- 
+
 # activate virtual environment
 pipenv shell
- 
+
 # exit virtual environment
 exit
 ```
@@ -545,15 +546,16 @@ c. Opening existing pipenv project
 
 ```py
 cd project_dir
- 
+
 # activate virtual environment
 pipenv shell
- 
+
 # exit virtual environment
 exit
 ```
 
 d. Remove virtual environment
+
 ```py
 cd <project_dir>
 pipenv --rm
@@ -564,32 +566,20 @@ e. Simply running a python script with pipenv without spawning a new shell
 ```py
 pipenv run python script.py
 ```
- 
+
 
 ### Jupyter notebook
 
 Running jupyter notebook under pipenv is possible. See [jupyter_notebook.md](jupyter_notebook.md##in-virtual-environment-mode)
 
+
 # pytest
 
-pytest can't seem to handle if file to tested has its name starting with a number. For example, filename '1_liftover_hg38_to_hg19.py' caused trouble and then was changed to 'a_liftover_hg38_to_hg19.py'. This is probably due to importing module with number as first letter causing issues.
+## Random tips
 
-
-## Avoiding .pyc files created when running pytest
-
-http://stackoverflow.com/questions/154443/how-to-avoid-pyc-files/154617#154617
-
-Can be done via terminal or programmatically.
-
-
-## Disable per-test capturing
-
-Use -s switch.
-
-pytest -s
-
- 
-## Parametrizing test functions
+- Use `-s` flag to show `stdout` and `stderr`, which are otherwise not shown by default.
+- 
+## Testing multiple paramters for a test
 
 https://docs.pytest.org/en/latest/parametrize.html
 
@@ -597,15 +587,55 @@ Example:
 
 ```py
 import pytest
-@pytest.mark.parametrize("test_input,expected", [
-    ("3+5", 8),
-    ("2+4", 6),
-    ("6*9", 42),
-])
+@pytest.mark.parametrize("test_input, expected", [
+        ("3+5", 8),
+        ("2+4", 6),
+        ("6*9", 42)
+        ],
+        ids=['test1', 'test2', 'test3']
+    )
 def test_eval(test_input, expected):
     assert eval(test_input) == expected
 ```
- 
+
+## Using parameters with fixtures
+
+This is allowed using `indirect`.
+
+```py
+@pytest.fixture()
+def yup_docker(request):
+    
+    # docker cmd
+    docker_image = "yup_docker"
+    cmd = f'docker run --rm {docker_image} python hello.py "{request.param.strip()}"'
+
+    output = subprocess.run(cmd.split(' '), stdout=subprocess.PIPE)
+    yield output.stdout.decode("utf-8").strip()
+
+
+@pytest.mark.parametrize('yup_docker, expected',[
+                                ('yo yo yo', '3'),
+                                ('yo', '1'),
+                            ],
+                            ids=['cellobiose', 'urea'],
+                            indirect=['yup_docker'])
+def test_hello(yup_docker, expected):
+
+    output = yup_docker
+
+    assert output == expected
+```
+
+
+## xfail
+
+Use [`xfail`](https://docs.pytest.org/en/latest/skipping.html#xfail-mark-test-functions-as-expected-to-fail) for test cases that are expected to fail.
+
+- [`raises` parameter](https://docs.pytest.org/en/latest/skipping.html#raises-parameter) can be used to ensure fail is due to expected exception.
+- They can be used with [`@pytest.mark.parametrize`](https://docs.pytest.org/en/latest/skipping.html#skip-xfail-with-parametrize) as well.
+
+
 ## Coverage
 
 https://pytest-cov.readthedocs.io/en/latest/readme.html#id1
