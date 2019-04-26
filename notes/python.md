@@ -40,6 +40,7 @@
   - [Testing multiple paramters for a test](#testing-multiple-paramters-for-a-test)
   - [Using parameters with fixtures](#using-parameters-with-fixtures)
   - [xfail](#xfail)
+  - [Auto-run tests on saving](#auto-run-tests-on-saving)
   - [Coverage](#coverage)
 - [temp files/dir](#temp-filesdir)
 
@@ -635,6 +636,12 @@ Use [`xfail`](https://docs.pytest.org/en/latest/skipping.html#xfail-mark-test-fu
 - [`raises` parameter](https://docs.pytest.org/en/latest/skipping.html#raises-parameter) can be used to ensure fail is due to expected exception.
 - They can be used with [`@pytest.mark.parametrize`](https://docs.pytest.org/en/latest/skipping.html#skip-xfail-with-parametrize) as well.
 
+
+## Auto-run tests on saving
+
+Install plugin [pytest-xdist](https://docs.pytest.org/en/3.0.0/xdist.html) and then use `-f` flag in pytest command.
+
+Note: This `-f` flag suppresses color output; Use [`--color=yes`](https://stackoverflow.com/a/24450942/3998252) to restore colors.
 
 ## Coverage
 
