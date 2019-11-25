@@ -6,5 +6,6 @@ Random notes on following topics:
 - [Conda](./notes/conda.md)
 - [Docker](./notes/docker.md)
 - [Terminal related](./notes/terminal.md)
+- [SLURM related](./notes/slurm.md)
 - [Bioinformatics related](./notes/bioinformatics.md)
 - [Other random stuff](./notes/random.md)
