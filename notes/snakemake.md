@@ -1,9 +1,13 @@
 - [run rule locally](#run-rule-locally)
 - [Using lambda functions inside rules](#using-lambda-functions-inside-rules)
 - [Using dictionary with wildcards as keys](#using-dictionary-with-wildcards-as-keys)
-- [`zip` with >2 wildcards](#zip-with-2-wildcards)
+- [zip with &gt;2 wildcards](#zip-with-gt2-wildcards)
 - [Using bash script that sends its own job in a snakemake rule](#using-bash-script-that-sends-its-own-job-in-a-snakemake-rule)
-- [Sourcing `.bashrc` as part of shell command in snakemake rule](#sourcing-bashrc-as-part-of-shell-command-in-snakemake-rule)
+- [Sourcing .bashrc as part of shell command in snakemake rule](#sourcing-bashrc-as-part-of-shell-command-in-snakemake-rule)
+- [SLURM related](#slurm-related)
+  - [Snakemake hangs when job times out or cancelled](#snakemake-hangs-when-job-times-out-or-cancelled)
+  - [Using snakemake profile](#using-snakemake-profile)
+  - [Job logs in append mode](#job-logs-in-append-mode)
 
 
 ## run rule locally
@@ -62,7 +66,7 @@ Use multiple `expand`. Example:
 ```py
 expand(expand(
     ANALYSIS + "/{sample_g}_vs_{sample_t}/Stelka/results/variants/somatic.{{typevar}}_Filtered",
-            zip, sample_g=GERMLINE, sample_t=TUMOR), 
+            zip, sample_g=GERMLINE, sample_t=TUMOR),
             typevar=TYPEVAR)
 ```
 
@@ -85,8 +89,81 @@ rule xxx:
 
 ## Sourcing `.bashrc` as part of shell command in snakemake rule
 
-```set +u; source /path/to/.bashrc; set -u```
+```sh
+set +u; source /path/to/.bashrc; set -u
+```
 
-[Source](https://stackoverflow.com/a/49681210/3998252)
+[Source](https://stackoverflow.com/a/49681210/3998252).
+
+
+## SLURM related
+
+### Snakemake hangs when job times out or cancelled
+
+This is a problem as [reported here](https://stackoverflow.com/q/52500725/3998252). I'm copying my answer from that site to solve this issue:
+
+Snakemake doesn't recognize all kinds of job statuses in slurm (and also in other job schedulers). To bridge this gap, snakemake provides option `--cluster-status`, where custom python script can be provided. As per [snakemake's documentation](https://snakemake.readthedocs.io/en/stable/executing/cli.html#CLUSTER):
+
+```sh
+ --cluster-status
+
+Status command for cluster execution. This is only considered in combination with the –cluster flag.
+If provided, Snakemake will use the status command to determine if a job has finished successfully or failed.
+For this it is necessary that the submit command provided to –cluster returns the cluster job id.
+Then, the status command will be invoked with the job id.
+Snakemake expects it to return ‘success’ if the job was successfull, ‘failed’ if the job failed and ‘running’ if the job still runs.
+
+```
+
+[Example shown](https://snakemake.readthedocs.io/en/stable/tutorial/additional_features.html#using-cluster-status) in snakemake's doc to use this feature:
+
+```py
+#!/usr/bin/env python
+import subprocess
+import sys
+
+jobid = sys.argv[1]
+
+output = str(subprocess.check_output("sacct -j %s --format State --noheader | head -1 | awk '{print $1}'" % jobid, shell=True).strip())
+
+running_status=["PENDING", "CONFIGURING", "COMPLETING", "RUNNING", "SUSPENDED"]
+if "COMPLETED" in output:
+  print("success")
+elif any(r in output for r in running_status):
+  print("running")
+else:
+  print("failed")
+```
+
+To use this script call snakemake similar to below, where status.py is the script above.
+
+```sh
+$ snakemake all --cluster "sbatch --cpus-per-task=1 --parsable" --cluster-status ./status.py
+```
+
+---
+Alternatively, you may use premade custom scripts for several job schedulers (slurm, lsf, etc), available via [Snakemake-Profiles](https://github.com/Snakemake-Profiles/doc). Here is the one for slurm - [slurm-status.py](https://github.com/Snakemake-Profiles/slurm/blob/master/%7B%7Bcookiecutter.profile_name%7D%7D/slurm-status.py).
+
+
+
+### Using snakemake profile
+
+Snakemake profiles make it easy to always use certain flags and options. Various premade [Snakemake-Profiles](https://github.com/Snakemake-Profiles/doc) have been made available by the community/authors. For slurm, I use my own forked repo - https://github.com/ManavalanG/slurm.
+
+Note: When setting up, for `submit_script`, choose `slurm-submit-advanced.py` as this [allows the usage of `--cluster-config` option](https://github.com/Snakemake-Profiles/slurm/issues/23#issuecomment-527379117).
+
+
+
+### Job logs in append mode
+
+Use `--open-mode=append` with `sbatch`.
+
+From `sbatch` [doc](https://slurm.schedmd.com/sbatch.html):
+
+```sh
+--open-mode=append|truncate
+
+        Open the output and error files using append or truncate mode as specified. The default value is specified by the system configuration parameter JobFileAppend.
+```
 
 
