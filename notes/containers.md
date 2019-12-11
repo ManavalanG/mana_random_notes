@@ -82,7 +82,7 @@ If mounting home is undesirable, it may be turned off. For `singularity run`, th
 ```
 
 * Use `--no-home` if mounting home dir is not needed or undesirable.
-* USe `--home` if the container expects a home directory. Example usage: --home `pwd`/abcd:$HOME
+* USe `--home` if the container expects a home directory. Example usage: ``` --home `pwd`/abcd:$HOME```
 
 
 ### Avoid filing up `/tmp`
@@ -90,4 +90,4 @@ If mounting home is undesirable, it may be turned off. For `singularity run`, th
 Singularity by default mounts `/tmp` dir. In case of cluster, IT would be happy if temporary directory is pointed instead to a scratch directory, as singularity containers fill `/tmp` up fast. This can be changed by:
 
 * Set `export SINGULARITY_TMPDIR=path_to_dir`. Or, [is it `SINGULARITY_CACHEDIR`](https://singularity.lbl.gov/faq#no-space-left-on-device)?
-* When binding/mounting directories is possible (for example `singularity run`), use `--home `pwd`/abcd:$HOME`. IT seems to prefer this solution.
+* When binding/mounting directories is possible (for example `singularity run`), use ``` --home `pwd`/tmp_dir:/tmp```. IT seems to prefer this solution.
