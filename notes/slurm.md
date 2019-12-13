@@ -40,28 +40,40 @@ squeue -u <username> -t RUNNING
 squeue -u <username> -t PENDING
 
 
+# squeue aliases I find useful
+alias SQ='squeue -o "%.8i %.20j %.10P %.7u %.5D %.11M  %.11l %.3t %.11m %R" -u $USER'
+alias SQ_long='squeue -o "%.8i %.20j %.10P %.7u %.5D %.11M  %.11l %.3t %.11m %R %V %o" -u $USER'  #also shows submission time and command ran
 ```
 
 ### Info on currently running jobs
 
 ```sh
 # List detailed information for a job (useful for troubleshooting)
-scontrol show jobid -dd <jobid>
+scontrol show job -d <jobid>
 
 # List status info for a currently running job
-sstat --format=AveCPU,AvePages,AveRSS,AveVMSize,JobID -j <jobid> --allsteps
+sstat --format=JobID,AveCPU,AvePages,AveRSS,AveVMSize --allsteps -j <jobid>
 
+# aliases I find useful
+alias SCONTR='scontrol show job -d'
+alias SR='sstat --format="JobID,AveCPU,AvePages,AveRSS,AveVMSize" --allsteps'
 ```
 
 
 ### Info on completed jobs
 
 ```sh
-# To get statistics on completed jobs by jobID
-sacct -j <jobid> --format=JobID,JobName,MaxRSS,Elapsed,state,ReqMem,MaxVMSize,AveVMSize
-
 # To view the same information for all jobs of a user
-sacct -u <username> --format=JobID,JobName,MaxRSS,Elapsed,state,ReqMem,MaxVMSize,AveVMSize
+sacct --format=JobID,JobName,MaxRSS,Elapsed,state,ReqMem,MaxVMSize,AveVMSize --units=M
+
+# To get statistics on completed jobs by jobID
+sacct --format=JobID,JobName,MaxRSS,Elapsed,state,ReqMem,MaxVMSize,AveVMSize --units=M -j <jobid>
+
+# shows resources allocated
+sacct --allocations
+
+# sacct aliases I find useful
+alias SC='sacct --format="JobID,JobName,MaxRSS,Elapsed,state,ReqMem,MaxVMSize,AveVMSize" --units=M'
 ```
 
 
