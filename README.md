@@ -3,6 +3,7 @@ Random notes on following topics:
 - [Python](./notes/python.md)
 - [Jupyter notebook](./notes/jupyter_notebook.md)
 - [Snakemake](./notes/snakemake.md)
+- [Bash scripting](./notes/bash.md)
 - [Conda](./notes/conda.md)
 - [Containers (docker, singularity)](./notes/containers.md)
 - [Terminal related](./notes/terminal.md)
