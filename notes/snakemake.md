@@ -1,9 +1,10 @@
 - [run rule locally](#run-rule-locally)
 - [Using lambda functions inside rules](#using-lambda-functions-inside-rules)
 - [Using dictionary with wildcards as keys](#using-dictionary-with-wildcards-as-keys)
-- [zip with &gt;2 wildcards](#zip-with-gt2-wildcards)
+- [`zip` with >2 wildcards](#zip-with-2-wildcards)
 - [Using bash script that sends its own job in a snakemake rule](#using-bash-script-that-sends-its-own-job-in-a-snakemake-rule)
-- [Sourcing .bashrc as part of shell command in snakemake rule](#sourcing-bashrc-as-part-of-shell-command-in-snakemake-rule)
+- [Sourcing `.bashrc` as part of shell command in snakemake rule](#sourcing-bashrc-as-part-of-shell-command-in-snakemake-rule)
+- [`--dag` and custom print messages](#--dag-and-custom-print-messages)
 - [SLURM related](#slurm-related)
   - [Snakemake hangs when job times out or cancelled](#snakemake-hangs-when-job-times-out-or-cancelled)
   - [Using snakemake profile](#using-snakemake-profile)
@@ -95,6 +96,18 @@ set +u; source /path/to/.bashrc; set -u
 
 [Source](https://stackoverflow.com/a/49681210/3998252).
 
+
+## `--dag` and custom print messages
+
+If custom print messages are used in snakemake pipeline, [`--dag` visualization](https://snakemake.readthedocs.io/en/stable/executing/cluster-cloud.html#visualization) will run into error.  To make them play nice, use dot's commenting in print messages.
+
+According to [dot manual](https://www.systutorials.com/docs/linux/man/1-dot/#lbAF),
+>  Comments may be /*C-like*/ or //C++-like.
+
+Example:
+```py
+print (f'// yo yo yo: "{x}"')
+```
 
 ## SLURM related
 
