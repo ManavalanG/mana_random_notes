@@ -56,13 +56,16 @@ sstat --format=JobID,AveCPU,AvePages,AveRSS,AveVMSize --allsteps -j <jobid>
 
 # aliases I find useful
 alias SCONTR='scontrol show job -d'
-alias SR='sstat --format="JobID,AveCPU,AvePages,AveRSS,AveVMSize" --allsteps'
+alias SR='sstat --format="JobID,NTasks,AveCPU,AvePages,AveRSS,AveVMSize,MaxRSSNode" --allsteps'
 ```
 
 
 ### Info on completed jobs
 
 ```sh
+# provides useful info on completed job, including the memory used and what percent of your allocated memory that amounts to.
+seff <jobid>
+
 # To view the same information for all jobs of a user
 sacct --format=JobID,JobName,MaxRSS,Elapsed,state,ReqMem,MaxVMSize,AveVMSize --units=M
 
@@ -73,7 +76,8 @@ sacct --format=JobID,JobName,MaxRSS,Elapsed,state,ReqMem,MaxVMSize,AveVMSize --u
 sacct --allocations
 
 # sacct aliases I find useful
-alias SC='sacct --format="JobID,JobName,MaxRSS,Elapsed,state,ReqMem,MaxVMSize,AveVMSize" --units=M'
+alias SC='sacct --format="JobID,JobName,Ntasks,MaxRSS,Elapsed,state,NodeList,ReqMem,MaxVMSize,AveVMSize,Partition,AllocTRES%40" --units=M'
+
 ```
 
 
