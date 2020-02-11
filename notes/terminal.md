@@ -1,18 +1,25 @@
 - [Text Processing](#text-processing)
-    - [awk](#awk)
-    - [cut](#cut)
-    - [paste](#paste)
+  - [awk](#awk)
+  - [cut](#cut)
+  - [paste](#paste)
 - [Numeric, textual and statistical operations](#numeric-textual-and-statistical-operations)
-    - [datamash](#datamash)
+  - [datamash](#datamash)
 - [Prettifying](#prettifying)
-    - [Pretty json](#pretty-json)
-    - [Viewing CSV files in terminal](#viewing-csv-files-in-terminal)
-    - [Preserving colors when redirecting to file](#preserving-colors-when-redirecting-to-file)
+  - [Pretty json](#pretty-json)
+  - [Viewing CSV files in terminal](#viewing-csv-files-in-terminal)
+  - [Preserving colors when redirecting to file](#preserving-colors-when-redirecting-to-file)
+- [Version control](#version-control)
+  - [Git submodule](#git-submodule)
+    - [Create submodule](#create-submodule)
+    - [To checkout particular release/commit](#to-checkout-particular-releasecommit)
+    - [Remove submodule](#remove-submodule)
+    - [Fetch repo with submodules](#fetch-repo-with-submodules)
 - [Others](#others)
-    - [Recursive download of folder contents using wget](#recursive-download-of-folder-contents-using-wget)
-    - [sshfs in Mac](#sshfs-in-mac)
-    - [Redirecting output to both stdout and file](#redirecting-output-to-both-stdout-and-file)
-    - [Save HTML webpage as screenshot](#save-html-webpage-as-screenshot)
+  - [Recursive download of folder contents using wget](#recursive-download-of-folder-contents-using-wget)
+  - [sshfs in Mac](#sshfs-in-mac)
+  - [md5sum](#md5sum)
+  - [Redirecting output to both stdout and file](#redirecting-output-to-both-stdout-and-file)
+  - [Save HTML webpage as screenshot](#save-html-webpage-as-screenshot)
 
 
 # Text Processing
@@ -23,32 +30,32 @@
 ## GENERAL STUFF
 # print first column
 awk '{print $1}'
- 
+
 # print last column
 awk '{print $NF}'
- 
+
 # print 2nd last column
 awk '{print $NF-2}'
- 
+
 # use custom delimiter
 awk 'BEGIN{FS=":"} {print $1}'
- 
- 
+
+
 ## CONDITIONAL STUFF
 # using IF conditions
 awk '{if ($1=="chr21" && $4>80) {print $0}}'
- 
+
 # print if a substring is part of the string
 echo "snowball" | awk '$1 ~ /snow/'
- 
+
 # print if a substring is NOT part of the string
 echo "snowball" | awk '$1 !~ /rain/'
- 
- 
+
+
 ## COOL TRICKS
 # print row number
 awk '{print NR ") " $1 " -> " $(NF-2)}'
- 
+
 # slice range of columns
 Better to use cut command. See elsewhere in this page.
 ```
@@ -61,7 +68,7 @@ Better to use cut command. See elsewhere in this page.
 ```sh
 # print from 3rd column
 cut -f 3- INPUTFILE
- 
+
 # print upto 3rd column
 cut -f -3 INPUTFILE
 ```
@@ -96,7 +103,7 @@ D   4
 
 
 
-# Numeric, textual and statistical operations 
+# Numeric, textual and statistical operations
 
 ## datamash
 
@@ -124,7 +131,7 @@ csvtool readable filename
 
 ## Preserving colors when redirecting to file
 
-Simply insert `unbuffer` before any command to make it think it is writing to an interactive output even if it is actually piping into another executable. 
+Simply insert `unbuffer` before any command to make it think it is writing to an interactive output even if it is actually piping into another executable.
 
 If colors are not visible with `less`, use `less -R`.
 
@@ -132,6 +139,42 @@ Works with `nohup` as well.
 
 [Source](https://superuser.com/a/751809)
 
+
+# Version control
+
+## Git submodule
+
+### Create submodule
+
+```sh
+# basic command
+git submodule add <git_repo_url_>
+
+# to store it in particular path
+git submodule add <git_repo_url_> <local_path>
+
+# to use particular branch instead of master
+git submodule add -b <branch> <git_repo_url_>
+```
+
+### To checkout particular release/commit
+
+```sh
+cd <submodule_directory>
+git checkout v1.0
+```
+[Source](https://stackoverflow.com/a/1778247/3998252)
+
+### Remove submodule
+
+No one-stop command. Follow the [solution here](https://stackoverflow.com/a/16162000/3998252).
+
+
+### Fetch repo with submodules
+
+```sh
+git clone --recursive <git_url>
+```
 
 # Others
 
@@ -154,20 +197,20 @@ Install appropriate OSX Fuse and then use following commands:
 ```sh
 # to mount from root
 sudo sshfs -o allow_other,defer_permissions username@address.org:/ /mnt/cluster/
- 
+
 # to mount home dir
 sudo sshfs -o allow_other,defer_permissions username@address.org:/remote/path/to/mount  /mnt/cluster/
- 
+
 Note: Since 'sudo'ing, first use local system's password and then it will ask for remote server's password.
- 
-# to unmount       
+
+# to unmount
 sudo umount /mnt/cluster
- 
+
 # if 'resource busy' error when trying unmount, use -f
 sudo umount -f /mnt/cluster
 ```
 
- 
+
  ## md5sum
 
 Creating checksum
