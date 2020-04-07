@@ -146,4 +146,18 @@ $ bcftools query -f '%CHROM %POS %AF\n' file.bcf | head -3
 1 13380 7.69515e-05
 1 16071 0.000123122
 1 16141 0.000138513
+
+# Extract a particular tag from INFO column
+$ bcftools query -f '%CHROM\t%POS\t%INFO/SVTYPE\n' tp-call.vcf | head
+10	829773	DEL
+10	1092494	DEL
+10	1741456	DEL
 ```
+
+
+## Chromosome mappings
+
+
+This repository contains chromosome/contig name mappings between UCSC <-> Ensembl <-> Gencode for a variety of genomes:
+
+https://github.com/dpryan79/ChromosomeMappings
