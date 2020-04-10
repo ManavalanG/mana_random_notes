@@ -21,11 +21,13 @@
   - [Change figure parameters globally for all figures in a script](#change-figure-parameters-globally-for-all-figures-in-a-script)
   - [Legends for chart with two Y-axes](#legends-for-chart-with-two-y-axes)
   - [Force axis tick labels to be integers](#force-axis-tick-labels-to-be-integers)
-  - [xticks and xtick_labels](#xticks-and-xticklabels)
+  - [xticks and xtick_labels](#xticks-and-xtick_labels)
   - [importing matplotlib in cluster](#importing-matplotlib-in-cluster)
   - [Axis in exponential format](#axis-in-exponential-format)
   - [Legend positioning without crowding](#legend-positioning-without-crowding)
-  - [constrained_layout](#constrainedlayout)
+  - [constrained_layout](#constrained_layout)
+- [subprocess](#subprocess)
+  - [Stream stdout to terminal](#stream-stdout-to-terminal)
 - [logging](#logging)
   - [Boilerplate using `colorlog`](#boilerplate-using-colorlog)
   - [Using `fileConfig`](#using-fileconfig)
@@ -97,7 +99,7 @@ df['A'] = [1' if x == 'Z' else 0 for x in df['B']]
 ```py
 # to get into a new dataframe
 df = df.drop('column_name', axis=1)
- 
+
 # to remove it inplace
 df.drop('column_name', axis=1, inplace=True)
 ```
@@ -113,14 +115,14 @@ df.drop('column_name', axis=1, inplace=True)
        aaa
 0    a 2 3
 1  b 6 7 8
- 
+
 # to keep 1 item in a column and store remaining in another column
 > df['x'], df['y'] = df['aaa'].str.split(' ', 1).str
 > df[['x', 'y']]
    x      y
 0  a    2 3
 1  b  6 7 8
- 
+
 # split column into multiple columns by a delimiter
 > df = df['aaa'].str.split(' ', expand=True)
 > df
@@ -146,7 +148,7 @@ data_pd['new_col'] = data_pd['col_X'].str[:1]
 ```py
 # if by row
 df.apply(lambda  x: x / x.sum() * 100, axis=1)
- 
+
 # if by column
 df.apply(lambda  x: x / x.sum() * 100, axis=0)
 ```
@@ -160,11 +162,11 @@ df.apply(lambda  x: x / x.sum() * 100, axis=0)
 1   1 0 3     2 5 7
 2   5 6 9     1 0 0
 3   7 0 2     0 3 5
- 
+
 # Sorted by column 'C' of 'Group1'. They need to be in a TUPLE.
 df.sort([('Group1', 'C')], ascending=False)
- 
-  Group1       Group2     
+
+  Group1       Group2
        A  B  C      A  B  C
 2      5  6  9      1  0  0
 1      1  0  3      2  5  7
@@ -202,7 +204,7 @@ dict_name = df.set_index('key_col')['value_col'].to_dict()
 
 ```py
 from cStringIO import StringIO
- 
+
 xx = StringIO()
 data_pd.to_csv(xx, index=False, sep='\t')
 xx.seek(0)  # this is important; position set to the beginning
@@ -215,7 +217,7 @@ xx.seek(0)  # this is important; position set to the beginning
 
 ```py
 df2 = df.rename(columns={'old_name' : 'new_name'})
- 
+
 # in-place
 df2.rename(columns={'old_name' : 'new_name'}, inplace = True)
 ```
@@ -243,10 +245,10 @@ for df in pd.read_csv('filename.gz',sep='\t', header=None, chunksize=chunksize, 
 ```py
 # using numpy
 numpy.isnan(item)   # item can't be string dtype
- 
+
 # using math
 math.isnan(item)    # item can't be string dtype
- 
+
 # using pandas
 pandas.isnull(item) # allows string dtype
 ```
@@ -346,7 +348,7 @@ Method 2:
 # Shrink current axis by 20%; to accomodate legends.
 box = ax.get_position()
 ax.set_position([box.x0, box.y0, box.width * 0.85, box.height])
-    
+
 # change 'bbox_to_anchor' for legend positions
 handles, labels = ax.get_legend_handles_labels()
 ax.legend(handles, labels, loc='center left', bbox_to_anchor=(1, 0.5))
@@ -366,6 +368,27 @@ plt.subplots(constrained_layout=True)
 [Source](https://matplotlib.org/tutorials/intermediate/constrainedlayout_guide.html)
 
 
+# subprocess
+
+## Stream stdout to terminal
+
+```py
+try:
+    proc = subprocess.Popen(
+        cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True
+    )
+
+    for line in proc.stdout:
+        print(line.strip("\n"))
+
+    proc.wait()
+except Exception:
+    LOGGER.exception(f"Exception occurred when running command: '{cmd}'")
+    raise SystemExit
+
+return None
+```
+
 # logging
 
 ## Boilerplate using `colorlog`
@@ -375,8 +398,8 @@ plt.subplots(constrained_layout=True)
 ```py
 import colorlog
 
-logger = colorlog.getLogger(__name__)  
-logger.setLevel(colorlog.colorlog.logging.DEBUG)  
+logger = colorlog.getLogger(__name__)
+logger.setLevel(colorlog.colorlog.logging.DEBUG)
 
 handler = colorlog.StreamHandler()
 handler.setFormatter(colorlog.ColoredFormatter(
@@ -401,7 +424,7 @@ logger.critical("Critical message")
 
 ## Using `fileConfig`
 
-Setup config file 
+Setup config file
 
 ```ini
 [loggers]
@@ -428,7 +451,7 @@ formatter=color
 args=(sys.stdout,)
 ```
 
-Use this config in script as below. Note that, in this implementation, 
+Use this config in script as below. Note that, in this implementation,
 `colorlog` will be imported as config file uses `colorlog` formatter.
 
 ```py
@@ -440,7 +463,7 @@ logger = logging.getLogger(__name__)
 ### logging in modules
 
 Above config based setup works for multiple modules as well.
-Example: 
+Example:
 
 *Module file:* `xxx.py`
 
@@ -579,7 +602,7 @@ Running jupyter notebook under pipenv is possible. See [jupyter_notebook.md](jup
 ## Random tips
 
 - Use `-s` flag to show `stdout` and `stderr`, which are otherwise not shown by default.
-- 
+-
 ## Testing multiple paramters for a test
 
 https://docs.pytest.org/en/latest/parametrize.html
@@ -606,7 +629,7 @@ This is allowed using `indirect`.
 ```py
 @pytest.fixture()
 def yup_docker(request):
-    
+
     # docker cmd
     docker_image = "yup_docker"
     cmd = f'docker run --rm {docker_image} python hello.py "{request.param.strip()}"'
@@ -666,7 +689,7 @@ import tempfile
 
 tmp = tempfile.NamedTemporaryFile()
 
-# Open the file for writing. NOTICE calling 'tmp.name' instead of just `tmp'. 
+# Open the file for writing. NOTICE calling 'tmp.name' instead of just `tmp'.
 with open(tmp.name, 'w') as f:
     f.write(stuff) # where `stuff` is, y'know... stuff to write (a string)
 
