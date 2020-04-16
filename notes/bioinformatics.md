@@ -13,6 +13,7 @@
   - [bcftools](#bcftools)
     - [Commands available](#commands-available)
     - [Examples](#examples)
+  - [Chromosome mappings](#chromosome-mappings)
 
 
 # Helpful resources
