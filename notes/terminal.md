@@ -20,6 +20,8 @@
   - [md5sum](#md5sum)
   - [Redirecting output to both stdout and file](#redirecting-output-to-both-stdout-and-file)
   - [Save HTML webpage as screenshot](#save-html-webpage-as-screenshot)
+  - [rclone](#rclone)
+    - [copy data on the server side](#copy-data-on-the-server-side)
 
 
 # Text Processing
@@ -265,3 +267,17 @@ pageres google.com
 pageres google.com 2048x1080
 ```
 
+## rclone
+
+### copy data on the server side
+
+```sh
+SRC="path/to/source"
+DEST="path/to/dest"
+
+# copies data. Here box is name used for the client when configuring rclone.
+rclone copy  --log-file=copy.log --progress --verbose box:$SRC box:$DEST
+
+# checks for file integrity
+rclone check --log-file=check.log --progress --verbose box:$SRC box:$DEST
+```
