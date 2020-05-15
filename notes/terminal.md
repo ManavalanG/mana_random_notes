@@ -22,6 +22,8 @@
   - [Save HTML webpage as screenshot](#save-html-webpage-as-screenshot)
   - [rclone](#rclone)
     - [copy data on the server side](#copy-data-on-the-server-side)
+  - [module](#module)
+    - [Common commands](#common-commands)
 
 
 # Text Processing
@@ -281,3 +283,21 @@ rclone copy  --log-file=copy.log --progress --verbose box:$SRC box:$DEST
 # checks for file integrity
 rclone check --log-file=check.log --progress --verbose box:$SRC box:$DEST
 ```
+
+
+## module
+
+### Common commands
+
+| command                    | description                                                                                                          |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| module list                | List currently loaded modules.                                                                                       |
+| module avail               | List available packages.                                                                                             |
+| module spider              | List available packages in a different format.                                                                       |
+| module help [modulefile]   | Description of specified module.                                                                                     |
+| module show [modulefile]   | Displays information about specified module, including environment changes, dependencies, software version and path. |
+| module load [modulefile]   | Loads module or specifies which dependencies have not been loaded.                                                   |
+| module unload [modulefile] | Unloads specified module from environment.                                                                           |
+| module purge               | Unloads all loaded modules                                                                                           |
+
+[Source](http://www.bu.edu/tech/support/research/software-and-programming/software-and-applications/modules/)
