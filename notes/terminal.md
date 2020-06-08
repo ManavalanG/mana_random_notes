@@ -301,3 +301,26 @@ rclone check --log-file=check.log --progress --verbose box:$SRC box:$DEST
 | module purge               | Unloads all loaded modules                                                                                           |
 
 [Source](http://www.bu.edu/tech/support/research/software-and-programming/software-and-applications/modules/)
+
+
+## xargs
+
+```sh
+# useful options
+-t      Print the command line on the standard error output before executing it.
+-p      Prompt the user about whether to run each command line and read a line from the terminal. Only run the command line if the response starts with ‘y’ or ‘Y’. Implies ‘-t’.
+-n      Use at most max-args arguments per command line.
+-d      delimiter
+-P      Run simultaneously up to max-procs processes at once; the default is 1. If max-procs is 0, xargs will run as many processes as possible simultaneously.
+-I replace-str    Replace occurrences of replace-str in the initial arguments with names read from standard input. Also, unquoted blanks do not terminate arguments; instead, the input is split at newlines only.
+```
+
+```sh
+# Examples
+
+# "find" outputs .err files modified in last 24 hours.
+# For each of this file (using -n 1), xargs runs a chained command
+# Notice percent sign is used to specify arguments multiple times
+
+find *.err -mtime -1 | xargs -I % -n 1 sh -c "echo %; ./del.py -s % | grep TIMEOUT"
+```
