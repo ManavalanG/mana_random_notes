@@ -22,8 +22,11 @@
   - [Save HTML webpage as screenshot](#save-html-webpage-as-screenshot)
   - [rclone](#rclone)
     - [copy data on the server side](#copy-data-on-the-server-side)
+  - [rsync](#rsync)
+    - [Copy with resuming enabled after interruption](#copy-with-resuming-enabled-after-interruption)
   - [module](#module)
     - [Common commands](#common-commands)
+  - [xargs](#xargs)
 
 
 # Text Processing
@@ -284,6 +287,29 @@ rclone copy  --log-file=copy.log --progress --verbose box:$SRC box:$DEST
 rclone check --log-file=check.log --progress --verbose box:$SRC box:$DEST
 ```
 
+## rsync
+
+### Copy with resuming enabled after interruption
+
+```sh
+$ CLU="xxxx@host.address.edu"
+$ SOURCE_DIR="xxxx"
+$ DEST_DIR="xxxx"
+$ PARTIAL_DIR="${DEST_DIR}/.rsync-partial"
+$ LOG_F="log.txt"
+
+$ rsync --archive --human-readable --progress \
+    -v -v \
+    --partial-dir=$PARTIAL_DIR \
+    --rsh=ssh \
+    $SOURCE_DIR \
+    $CLU:$DEST_DIR \
+    >> $LOG_F
+```
+
+- [See here](https://serverfault.com/a/141778) for what `--archive` flag does.
+- `--partial-dir` flag is to help with [resuming after interruption](https://unix.stackexchange.com/a/252969/339199).
+
 
 ## module
 
@@ -322,5 +348,5 @@ rclone check --log-file=check.log --progress --verbose box:$SRC box:$DEST
 # For each of this file (using -n 1), xargs runs a chained command
 # Notice percent sign is used to specify arguments multiple times
 
-find *.err -mtime -1 | xargs -I % -n 1 sh -c "echo %; ./del.py -s % | grep TIMEOUT"
+find *.err -mtime -1 | xargs -I {} -n 1 sh -c "echo {}; ./del.py -s {} | grep TIMEOUT"
 ```
