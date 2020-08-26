@@ -2,9 +2,16 @@
   - [Basic commands](#basic-commands)
     - [Submitting jobs](#submitting-jobs)
     - [Listing jobs](#listing-jobs)
+      - [squeue](#squeue)
     - [Info on currently running jobs](#info-on-currently-running-jobs)
+      - [scontrol](#scontrol)
+      - [sstat](#sstat)
     - [Info on completed jobs](#info-on-completed-jobs)
+      - [seff](#seff)
+      - [sacct](#sacct)
     - [Controlling jobs](#controlling-jobs)
+      - [scancel](#scancel)
+      - [scontrol](#scontrol-1)
 
 
 # SLURM
@@ -29,6 +36,8 @@ EOF
 
 ### Listing jobs
 
+#### squeue
+
 ```sh
 # list all current jobs for a user
 squeue -u <username>
@@ -47,25 +56,39 @@ alias SQ_long='squeue -o "%.8i %.20j %.10P %.7u %.5D %.11M  %.11l %.3t %.11m %R 
 
 ### Info on currently running jobs
 
+#### scontrol
+
 ```sh
 # List detailed information for a job (useful for troubleshooting)
 scontrol show job -d <jobid>
 
+# aliases I find useful
+alias SCONTR='scontrol show job -d'
+```
+
+#### sstat
+
+```sh
 # List status info for a currently running job
 sstat --format=JobID,AveCPU,AvePages,AveRSS,AveVMSize --allsteps -j <jobid>
 
 # aliases I find useful
-alias SCONTR='scontrol show job -d'
 alias SR='sstat --format="JobID,NTasks,AveCPU,AvePages,AveRSS,AveVMSize,MaxRSSNode" --allsteps'
 ```
 
 
 ### Info on completed jobs
 
+#### seff
+
 ```sh
 # provides useful info on completed job, including the memory used and what percent of your allocated memory that amounts to.
 seff <jobid>
+```
 
+#### sacct
+
+```sh
 # To view the same information for all jobs of a user
 sacct --format=JobID,JobName,MaxRSS,Elapsed,state,ReqMem,MaxVMSize,AveVMSize --units=M
 
@@ -77,11 +100,12 @@ sacct --allocations
 
 # sacct aliases I find useful
 alias SC='sacct --format="JobID,JobName,Ntasks,MaxRSS,Elapsed,state,NodeList,ReqMem,MaxVMSize,AveVMSize,Partition,AllocTRES%40" --units=M'
-
 ```
 
 
 ### Controlling jobs
+
+#### scancel
 
 ```sh
 # To cancel one job
@@ -95,7 +119,11 @@ scancel -t PENDING -u <username>
 
 # To cancel one or more jobs by name
 scancel --name myJobName
+```
 
+#### scontrol
+
+```sh
 # To hold a particular job from being scheduled
 scontrol hold <jobid>
 
