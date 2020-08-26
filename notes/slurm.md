@@ -9,6 +9,11 @@
     - [Info on completed jobs](#info-on-completed-jobs)
       - [seff](#seff)
       - [sacct](#sacct)
+        - [Useful flags and their meaning](#useful-flags-and-their-meaning)
+          - [CPU](#cpu)
+          - [Memory](#memory)
+          - [Time](#time)
+          - [I/O](#io)
     - [Controlling jobs](#controlling-jobs)
       - [scancel](#scancel)
       - [scontrol](#scontrol-1)
@@ -98,9 +103,58 @@ sacct --format=JobID,JobName,MaxRSS,Elapsed,state,ReqMem,MaxVMSize,AveVMSize --u
 # shows resources allocated
 sacct --allocations
 
+# jobs between select dates; valid formats for day-time: HH:MM[:SS] [AM|PM], MMDD[YY] or MM/DD[/YY] or MM.DD[.YY], MM/DD[/YY]-HH:MM[:SS], YYYY-MM-DD[THH:MM[:SS]]
+sacct --starttime 2020-04-17T14:00:00 --endtime 2020-04-25T23:59:59 --allocations
+sacct -S $(date -d '1 month ago' +%D-%R) -E $(date -d '2 weeks ago' +%D-%R)
+
 # sacct aliases I find useful
 alias SC='sacct --format="JobID,JobName,Ntasks,MaxRSS,Elapsed,state,NodeList,ReqMem,MaxVMSize,AveVMSize,Partition,AllocTRES%40" --units=M'
 ```
+
+
+##### Useful flags and their meaning
+
+[Source](https://rc.byu.edu/wiki/?id=Using+sacct)
+
+###### CPU
+
+| Flag       | Meaning                                                            |
+|------------|--------------------------------------------------------------------|
+| NCPUs      | Number of CPUs used by the job                                     |
+| NNodes     | Number of nodes used by the job                                    |
+| UserCPU    | User CPU time used by the job                                      |
+| SystemCPU  | System CPU time used by the job                                    |
+| TotalCPU   | Total CPU time used by the job; sum of UserCPU and SystemCPU       |
+| CPUTime    | Elapsed*NCPUs (total CPU time a perfectly efficient job would use) |
+
+###### Memory
+
+| Flag    | Meaning                                                                   |
+|---------|---------------------------------------------------------------------------|
+| ReqMem  | Amount of memory requested; suffixed with 'c' if per CPU, 'n' if per node |
+| AveRSS  | Average memory use for all tasks                                          |
+| MaxRSS  | Maximum memory use of any task                                            |
+
+###### Time
+
+| Flag       | Meaning                             |
+|------------|-------------------------------------|
+| Submit     | When the job was submitted          |
+| Start      | When the job started                |
+| End        | When the job ended                  |
+| TimeLimit  | How much time the job was allocated |
+| Elapsed    | How much time the job used          |
+
+###### I/O
+
+| Flag          | Meaning                                       |
+|---------------|-----------------------------------------------|
+| AveDiskRead   | Average number of bytes read for all tasks    |
+| MaxDiskRead   | Maximum number of bytes read for any task     |
+| AveDiskWrite  | Average number of bytes written for all tasks |
+| MaxDiskWrite  | Maximum number of bytes read for any task     |
+| AvePages      | Average number of page faults for all tasks   |
+| MaxPages      | Maximum number of page faults for any task    |
 
 
 ### Controlling jobs
