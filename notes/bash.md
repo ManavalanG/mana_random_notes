@@ -1,6 +1,31 @@
 # Bash scripting
 - [Bash scripting](#bash-scripting)
+  - [Preferred shebang](#preferred-shebang)
+  - [Safety first](#safety-first)
   - [getopts for parsing options and arguments](#getopts-for-parsing-options-and-arguments)
+
+## Preferred shebang
+
+```sh
+#!/usr/bin/env bash
+```
+
+[Source](https://stackoverflow.com/a/10383546/3998252)
+
+
+## Safety first
+
+```sh
+set -e   # exit on nonzero exit status
+set -u   # abort on undefined variable
+set -o pipefail  # don't hide errors within pipes
+set -x    # print command before executing; useful for debugging
+
+set -euo pipefail   # (unofficial) bash strict mode
+```
+
+Source [1](https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/), [2](http://redsymbol.net/articles/unofficial-bash-strict-mode/)
+
 
 ## getopts for parsing options and arguments
 
