@@ -17,6 +17,8 @@
     - [Controlling jobs](#controlling-jobs)
       - [scancel](#scancel)
       - [scontrol](#scontrol-1)
+    - [Interactive jobs](#interactive-jobs)
+      - [srun](#srun)
 
 
 # SLURM
@@ -186,4 +188,25 @@ scontrol release <jobid>
 
 # To requeue (cancel and rerun) a particular job
 scontrol requeue <jobid>
+```
+
+
+### Interactive jobs
+
+#### srun
+
+```sh
+# aliases to make my life less miserable
+alias SRUN_SIMPLE="srun --pty /bin/bash"
+alias SRUN_EXPRESS="srun --ntasks=1 --cpus-per-task=4 --mem-per-cpu=4096 --partition=express --pty /bin/bash"
+alias SRUN_MEDIUM="srun --ntasks=1 --cpus-per-task=4 --mem-per-cpu=4096 --partition=medium --pty /bin/bash"
+
+SRUN_CUSTOM() {
+    if [ "$#" -ne 3 ]; then
+        echo "Usage:"
+        echo "SRUN_CUSTOM  cpus-per-task  mem-per-cpu  partition"
+    else
+        srun --ntasks=1 --cpus-per-task="$1" --mem-per-cpu="$2" --partition="$3" --pty /bin/bash
+    fi
+}
 ```
