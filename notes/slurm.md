@@ -9,17 +9,11 @@
     - [Info on completed jobs](#info-on-completed-jobs)
       - [seff](#seff)
       - [sacct](#sacct)
-        - [Useful flags and their meaning](#useful-flags-and-their-meaning)
-          - [CPU](#cpu)
-          - [Memory](#memory)
-          - [Time](#time)
-          - [I/O](#io)
     - [Controlling jobs](#controlling-jobs)
       - [scancel](#scancel)
       - [scontrol](#scontrol-1)
     - [Interactive jobs](#interactive-jobs)
       - [srun](#srun)
-
 
 # SLURM
 
