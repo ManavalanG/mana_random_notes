@@ -34,6 +34,10 @@
     - [logging in modules](#logging-in-modules)
   - [Disable logs from specific libraries](#disable-logs-from-specific-libraries)
   - [Capturing stack traces](#capturing-stack-traces)
+- [rich](#rich)
+  - [Logging](#logging-1)
+  - [Traceback](#traceback)
+  - [Progress bar](#progress-bar)
 - [Virtual environment](#virtual-environment)
   - [pipenv](#pipenv)
     - [Jupyter notebook](#jupyter-notebook)
@@ -526,6 +530,48 @@ Shortcut for above:
 logging.exception("Exception occurred")
 ```
 
+# rich
+
+[Source](https://rich.readthedocs.io/en/latest/progress.html)
+
+## Logging
+
+Boilerplate:
+
+```py
+import logging
+from rich.logging import RichHandler
+
+logging.basicConfig(
+    level="DEBUG",
+    format="%(name)-12s %(message)s",
+    datefmt="%m-%d-%y %H:%M:%S",
+    handlers=[RichHandler(rich_tracebacks=True)]
+)
+
+logger = logging.getLogger(__name__)
+```
+
+## Traceback
+
+```py
+# makes rich default traceback handler so that all uncaught exceptions will be rendered with highlighting
+from rich.traceback import install
+install()
+```
+
+## Progress bar
+
+Basic usage:
+
+```py
+from rich.progress import track
+
+for n in track(range(n), description="Processing..."):
+    do_work(n)
+```
+
+See [here](https://rich.readthedocs.io/en/latest/progress.html) for advanced setup.
 
 # Virtual environment
 
