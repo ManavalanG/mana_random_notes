@@ -51,8 +51,8 @@ squeue -u <username> -t PENDING
 
 
 # squeue aliases I find useful
-alias SQ='squeue -o "%.8i %.20j %.10P %.7u %.5D %.11M  %.11l %.3t %.11m %R" -u $USER'
-alias SQ_long='squeue -o "%.8i %.20j %.10P %.7u %.5D %.11M  %.11l %.3t %.11m %R %V %o" -u $USER'  #also shows submission time and command ran
+alias SQ='squeue -o "%.8i %.20j %.10P %.7u %.5D %.4C %.11M  %.11l %.3t %.11m %R" -u $USER'
+alias SQ_long='squeue -o "%.8i %.20j %.10P %.7u %.5D %.4C %.11M  %.11l %.3t %.11m %R %V %o" -u $USER'  #also shows submission time and command ran
 
 # Total no. of jobs
 alias no_jobs="SQ -h | wc -l"
