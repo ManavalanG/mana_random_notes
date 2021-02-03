@@ -3,6 +3,8 @@
 - [Execute notebook from command line](#execute-notebook-from-command-line)
 - [In virtual environment mode](#in-virtual-environment-mode)
 - [Change working dir for the notebook](#change-working-dir-for-the-notebook)
+- [Magic stuff](#magic-stuff)
+  - [Access python variable in a cell using bash magic](#access-python-variable-in-a-cell-using-bash-magic)
 
 
 ## High-resolution plot outputs for high resolution monitors
@@ -36,12 +38,12 @@ jupyter nbconvert --execute --to notebook --inplace <notebook>
 
 # If you want to run a notebook and produce a new notebook, use "--to notebook"
 jupyter nbconvert --execute --to notebook <notebook>
-    
+
 # save as html (w/o executing)
 jupyter nbconvert --to html <filename>
 
 # if cell timeout is causing error, use --ExecutePreprocessor.timeout=None
-jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=None --inplace <filename>     
+jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=None --inplace <filename>
 ```
 
 [Source](https://stackoverflow.com/a/35572827/3998252)
@@ -63,7 +65,7 @@ pipenv run jupyter notebook
 ## install extensions
 pipenv install jupyter_contrib_nbextensions
 
-## run nbconvert 
+## run nbconvert
 pipenv run jupyter nbconvert --<other_flags/params>
 ```
 
@@ -77,4 +79,30 @@ print (f"Working dir: {os.getcwd()}")
 ```
 
 [Source](https://stackoverflow.com/a/35665295/3998252)
+
+Note: `%cd` line magic can be used as well.
+
+## Magic stuff
+
+Some interesting magics:
+
+| Magic    |                       Purpose                       |
+| -------- | :-------------------------------------------------: |
+| %%bash   |        Run cells with bash in a subprocess.         |
+| %%script |           Run a cell via a shell command            |
+| !      |        To run a shell command        |
+| %cd      |        Change the current working directory.        |
+| %env     |      Get, set, or list environment variables.       |
+| %run     |   Run the named file inside IPython as a program.   |
+| %time    | Time execution of a Python statement or expression. |
+
+
+### Access python variable in a cell using bash magic
+
+```
+%%bash -s "$myPythonVar" "$myOtherVar"
+echo "This bash script knows about $1 and $2"
+```
+
+[Source](https://stackoverflow.com/a/19674648/3998252)
 
