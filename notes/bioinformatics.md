@@ -14,6 +14,7 @@
     - [Commands available](#commands-available)
     - [Examples](#examples)
   - [Chromosome mappings](#chromosome-mappings)
+- [Some useful tools](#some-useful-tools)
 
 
 # Helpful resources
@@ -162,3 +163,11 @@ $ bcftools query -f '%CHROM\t%POS\t%INFO/SVTYPE\n' tp-call.vcf | head
 This repository contains chromosome/contig name mappings between UCSC <-> Ensembl <-> Gencode for a variety of genomes:
 
 https://github.com/dpryan79/ChromosomeMappings
+
+
+# Some useful tools
+
+- [vcf-validator](https://github.com/EBIvariation/vcf-validator)
+  - Validates VCF format according to spec
+  - Auto-fixes some common problems (eg. duplicate variants)
+  - assesses the correctness of a VCF file with respect to a reference FASTA
