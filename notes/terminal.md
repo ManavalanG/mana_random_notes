@@ -27,6 +27,7 @@
   - [module](#module)
     - [Common commands](#common-commands)
   - [xargs](#xargs)
+  - [fd](#fd)
 
 
 # Text Processing
@@ -350,3 +351,46 @@ $ rsync --archive --human-readable --progress \
 
 find *.err -mtime -1 | xargs -I {} -n 1 sh -c "echo {}; ./del.py -s {} | grep TIMEOUT"
 ```
+
+## fd
+
+[A simple, fast and user-friendly alternative](https://github.com/sharkdp/fd) to `find`. While it does not aim to support all of find's powerful
+functionality, it provides sensible (opinionated) defaults for a majority of use cases.
+
+Few things to note:
+- case-insensitive by default
+- Smart case: the search is case-insensitive by default. It switches to case-sensitive if the pattern contains an uppercase character.
+- Ignores hidden directories and files, by default.
+- Ignores patterns from your .gitignore, by default.
+- Allows specifying time/duration in human readable format. Example: `--newer 2weeks`.
+
+Usage:
+```sh
+fd [FLAGS/OPTIONS] [<pattern>] [<path>...]
+```
+
+Some useful flags/options:
+```sh
+FLAGS:
+    -H, --hidden            Search hidden files and directories
+    -I, --no-ignore         Do not respect .(git|fd)ignore files
+    -s, --case-sensitive    Case-sensitive search (default: smart case)
+    -i, --ignore-case       Case-insensitive search (default: smart case)
+    -a, --absolute-path     Show absolute instead of relative paths
+    -l, --list-details      Use a long listing format with file metadata
+
+OPTIONS:
+    -d, --max-depth <depth>            Set maximum search depth (default: none)
+    -t, --type <filetype>...           Filter by type: file (f), directory (d), symlink (l),
+                                       executable (x), empty (e), socket (s), pipe (p)
+    -e, --extension <ext>...           Filter by file extension
+    -x, --exec <cmd>                   Execute a command for each search result
+    -X, --exec-batch <cmd>             Execute a command with all search results at once
+    -E, --exclude <pattern>...         Exclude entries that match the given glob pattern
+    -c, --color <when>                 When to use colors: never, *auto*, always
+    -S, --size <size>...               Limit results based on the size of files.
+        --changed-within <date|dur>    Filter by file modification time (newer than)
+        --changed-before <date|dur>    Filter by file modification time (older than)
+    -o, --owner <user:group>           Filter by owning user and/or group
+```
+
