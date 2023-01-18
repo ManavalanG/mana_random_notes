@@ -14,14 +14,14 @@
 
 - Downsampling using total number of bases.
 
-    ```sh
-    reformat.sh in1={input.illumina_r1} \\
-                in2={input.illumina_r2} \\
-                out1={params.unzipped_r1} \\
-                out2={params.unzipped_r2} \\
-                samplebasestarget=$BASECOUNT \\
-                sampleseed={params.seed_random}
-    ```
+```sh
+reformat.sh in1={input.illumina_r1} \\
+            in2={input.illumina_r2} \\
+            out1={params.unzipped_r1} \\
+            out2={params.unzipped_r2} \\
+            samplebasestarget=$BASECOUNT \\
+            sampleseed={params.seed_random}
+```
 
 
 ### fastq base count
@@ -30,10 +30,10 @@
 
 - Using BBMap's reformat.sh
 
-    ```bash
-    reformat.sh in={input} \\
-            2> {output}
-    ```
+```bash
+reformat.sh in={input} \\
+        2> {output}
+```
 
 
 ### Extract fastq reads by id
@@ -78,12 +78,12 @@ make
 
 - Using `bioawk`
 
-    ```sh
-    # filter header ID containing substring "OCS"
-    bioawk -c fastx '{if ($name ~ /OCS/) {print ">"$name " " $comment;print $seq}}' fname.fasta
+```sh
+# filter header ID containing substring "OCS"
+bioawk -c fastx '{if ($name ~ /OCS/) {print ">"$name " " $comment;print $seq}}' fname.fasta
 
-    # Pipe to "fold -120" to wrap sequence. Note: This would also wrap header line though.
-    ```
+# Pipe to "fold -120" to wrap sequence. Note: This would also wrap header line though.
+```
 
 
 ## vcf

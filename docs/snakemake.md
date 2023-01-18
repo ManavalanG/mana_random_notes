@@ -15,30 +15,30 @@ Listed below are some of my examples that used lambda for conditional situations
 
 1. Uses lambda to define input file needed depending on wildcard 'data_source'
 
-    ```py
-    rule extract_by_chr:
-        input:
-            lambda wildcards: str(EXAC_RAW_PATH / "ExAC.r1.sites.vep.vcf.gz") \
-                if (wildcards.data_source.lower()=='exac') \
-                else \
-                str(GNOMAD_RAW_PATH / "exomes"/ "gnomad.exomes.r2.0.1.sites.vcf.gz")
-        output:
-            "{path}/split_by_chr/{data_source}_raw_chr_{chr_no}.vcf.gz"
-        shell:
-            "..."
-    ```
+```py
+rule extract_by_chr:
+    input:
+        lambda wildcards: str(EXAC_RAW_PATH / "ExAC.r1.sites.vep.vcf.gz") \
+            if (wildcards.data_source.lower()=='exac') \
+            else \
+            str(GNOMAD_RAW_PATH / "exomes"/ "gnomad.exomes.r2.0.1.sites.vcf.gz")
+    output:
+        "{path}/split_by_chr/{data_source}_raw_chr_{chr_no}.vcf.gz"
+    shell:
+        "..."
+```
 
 2. Uses lambda to choose the parameter flag required
 
-    ```py
-    rule extract_Adjusted_AC_AN_exac:
-        output:
-            str("extract_AC_AN/{filter_used}" / "11_table.tsv.gz")
-        params:
-            filter_parameter = lambda wildcards: '--remove-filtered-all' if wildcards.filter_used=='pass'  else ''
-        shell:
-            "..."
-    ```
+```py
+rule extract_Adjusted_AC_AN_exac:
+    output:
+        str("extract_AC_AN/{filter_used}" / "11_table.tsv.gz")
+    params:
+        filter_parameter = lambda wildcards: '--remove-filtered-all' if wildcards.filter_used=='pass'  else ''
+    shell:
+        "..."
+```
 
 
 ## Using dictionary with wildcards as keys

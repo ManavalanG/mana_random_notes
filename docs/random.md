@@ -26,24 +26,24 @@ Python module. Failed to extract most of the text. Extracted just small part of 
 
 - Installed in mac - "brew install poppler". It's part of poppler suite.
   
-    ```sh
-    # simple conversion
-    pdftotext sample.pdf out.txt
-    
-    # to keep layout of text as in input pdf
-    pdftotext -layout sample.pdf out.txt
-    
-    # to change encoding. Default UTF-8 encoding resulted in 'fi' as one letter instead of twletters. ASCII7 worked out well.
-    pdftotext -layout enc ASCII7 sample.pdf out.txt
-    ```
+```sh
+# simple conversion
+pdftotext sample.pdf out.txt
+
+# to keep layout of text as in input pdf
+pdftotext -layout sample.pdf out.txt
+
+# to change encoding. Default UTF-8 encoding resulted in 'fi' as one letter instead of twletters. ASCII7 worked out well.
+pdftotext -layout enc ASCII7 sample.pdf out.txt
+```
 
 - Recognizing header and footer is not straightforward but can be done by choosing the area of pdf tthat need to be converted. See this [stackoverflow answer](https://stackoverflow.com/a/35005347/3998252).
 
 - What worked for me in my case for phenotips file
 
-    ```sh
-    pdftotext -layout enc ASCII7 -y 80 -H 640 -W 1000 sample.pdf out.txt
-    ```
+```sh
+pdftotext -layout enc ASCII7 -y 80 -H 640 -W 1000 sample.pdf out.txt
+```
 
 ## Convert Excel xlsx to csv
 
