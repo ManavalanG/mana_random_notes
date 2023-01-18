@@ -152,7 +152,8 @@ Alternatively, you may use premade custom scripts for several job schedulers (sl
 
 Snakemake profiles make it easy to always use certain flags and options. Various premade [Snakemake-Profiles](https://github.com/Snakemake-Profiles/doc) have been made available by the community/authors. For slurm, I use my own forked repo - https://github.com/ManavalanG/slurm.
 
-Note: When setting up, for `submit_script`, choose `slurm-submit-advanced.py` as this [allows the usage of `--cluster-config` option](https://github.com/Snakemake-Profiles/slurm/issues/23#issuecomment-527379117).
+!!! note
+    When setting up, for `submit_script`, choose `slurm-submit-advanced.py` as this [allows the usage of `--cluster-config` option](https://github.com/Snakemake-Profiles/slurm/issues/23#issuecomment-527379117).
 
 
 

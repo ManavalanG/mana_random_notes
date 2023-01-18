@@ -63,8 +63,8 @@ filter_fasta_by_seq_length.pl  \
 
 Tool [FastQValidator](https://genome.sph.umich.edu/wiki/FastQValidator)
 
-Note:
-Installation of release version `0.1.1a` resulted in error, and it was resolved based on [solution here](https://vcru.wisc.edu/simonlab/bioinformatics/programs/install/fastqvalidator.htm). In short, `libStatGen` supplied was out of date, and was obtained directly from its source.
+!!! warning
+      Installation of release version `0.1.1a` resulted in error, and it was resolved based on [solution here](https://vcru.wisc.edu/simonlab/bioinformatics/programs/install/fastqvalidator.htm). In short, `libStatGen` supplied was out of date, and was obtained directly from its source.
 
 ```sh
 rm libStatGen -r

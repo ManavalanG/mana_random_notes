@@ -530,7 +530,7 @@ pipenv is the easiest way to manage virtual environment as it automates several 
 
 a. Creating new/fresh virtual environment
 
-```py
+```sh
 cd project_dir
 
 # to initiate pipenv virtual env
@@ -550,7 +550,7 @@ exit
 ```
 
 b. Recreating virtual environment from Pipfile
-```py
+```sh
 # installs all packages from Pipfile
 pipenv install
 
@@ -563,7 +563,7 @@ exit
 
 c. Opening existing pipenv project
 
-```py
+```sh
 cd project_dir
 
 # activate virtual environment
@@ -575,14 +575,14 @@ exit
 
 d. Remove virtual environment
 
-```py
+```sh
 cd <project_dir>
 pipenv --rm
 ```
 
 e. Simply running a python script with pipenv without spawning a new shell
 
-```py
+```sh
 pipenv run python script.py
 ```
 
@@ -597,7 +597,8 @@ Running jupyter notebook under pipenv is possible. See [jupyter_notebook.md](jup
 ### Random tips
 
 - Use `-s` flag to show `stdout` and `stderr`, which are otherwise not shown by default.
--
+
+
 ### Testing multiple paramters for a test
 
 https://docs.pytest.org/en/latest/parametrize.html
@@ -659,7 +660,8 @@ Use [`xfail`](https://docs.pytest.org/en/latest/skipping.html#xfail-mark-test-fu
 
 Install plugin [pytest-xdist](https://docs.pytest.org/en/3.0.0/xdist.html) and then use `-f` flag in pytest command.
 
-Note: This `-f` flag suppresses color output; Use [`--color=yes`](https://stackoverflow.com/a/24450942/3998252) to restore colors.
+!!! info
+    This `-f` flag suppresses color output; Use [`--color=yes`](https://stackoverflow.com/a/24450942/3998252) to restore colors.
 
 ### Coverage
 

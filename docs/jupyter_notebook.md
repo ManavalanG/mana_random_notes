@@ -73,7 +73,8 @@ print (f"Working dir: {os.getcwd()}")
 
 [Source](https://stackoverflow.com/a/35665295/3998252)
 
-Note: `%cd` line magic can be used as well.
+!!! note
+    `%cd` line magic can be used as well.
 
 ## Magic stuff
 
