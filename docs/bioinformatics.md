@@ -1,22 +1,3 @@
-- [Helpful resources](#helpful-resources)
-  - [One-liners](#one-liners)
-- [fastq](#fastq)
-  - [Downsample fastq](#downsample-fastq)
-    - [BBMap's reformat.sh](#bbmaps-reformatsh)
-  - [fastq base count](#fastq-base-count)
-  - [Extract fastq reads by id](#extract-fastq-reads-by-id)
-  - [Filter fastq by sequence length](#filter-fastq-by-sequence-length)
-  - [fastq format validation](#fastq-format-validation)
-- [fasta](#fasta)
-  - [Filter by header](#filter-by-header)
-- [vcf](#vcf)
-  - [bcftools](#bcftools)
-    - [Commands available](#commands-available)
-    - [Examples](#examples)
-  - [Chromosome mappings](#chromosome-mappings)
-- [Some useful tools](#some-useful-tools)
-
-
 # Helpful resources
 
 ## One-liners

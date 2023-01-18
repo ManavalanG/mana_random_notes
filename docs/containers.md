@@ -1,13 +1,3 @@
-- [Containers](#containers)
-  - [docker](#docker)
-    - [Basic (sorta) pipeline](#basic-sorta-pipeline)
-    - [Some docker run options/args](#some-docker-run-optionsargs)
-  - [Singularity](#singularity)
-    - [Basic stuff](#basic-stuff)
-    - [Mounting home dir](#mounting-home-dir)
-    - [Avoid filing up /tmp](#avoid-filing-up-tmp)
-
-
 # Containers
 
 ## docker

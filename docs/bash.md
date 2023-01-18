@@ -1,8 +1,4 @@
 # Bash scripting
-- [Bash scripting](#bash-scripting)
-  - [Preferred shebang](#preferred-shebang)
-  - [Safety first](#safety-first)
-  - [getopts for parsing options and arguments](#getopts-for-parsing-options-and-arguments)
 
 ## Preferred shebang
 

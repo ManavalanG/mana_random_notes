@@ -1,18 +1,3 @@
-- [Extract text from PDF](#extract-text-from-pdf)
-  - [Tools Tried](#tools-tried)
-    - [pypdf2](#pypdf2)
-    - [pdfminder](#pdfminder)
-    - [pdftotext](#pdftotext)
-- [Convert Excel xlsx to csv](#convert-excel-xlsx-to-csv)
-- [UCSC genome browser](#ucsc-genome-browser)
-  - [Interesting features](#interesting-features)
-    - [See settings used in text format](#see-settings-used-in-text-format)
-    - [Short match](#short-match)
-    - [Show DNA seqs in color based on features](#show-dna-seqs-in-color-based-on-features)
-    - [Primer design](#primer-design)
-    - [Save snapshots](#save-snapshots)
-
-
 # Extract text from PDF
 
 ## Tools Tried

@@ -1,9 +1,5 @@
 # Conda
 
-- [Conda](#conda)
-  - [Some basic commands](#some-basic-commands)
-  - [Example environment file](#example-environment-file)
-
 ## Some basic commands
 
 ```sh

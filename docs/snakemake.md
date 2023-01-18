@@ -1,15 +1,4 @@
-- [run rule locally](#run-rule-locally)
-- [Using lambda functions inside rules](#using-lambda-functions-inside-rules)
-- [Using dictionary with wildcards as keys](#using-dictionary-with-wildcards-as-keys)
-- [`zip` with >2 wildcards](#zip-with-2-wildcards)
-- [Using bash script that sends its own job in a snakemake rule](#using-bash-script-that-sends-its-own-job-in-a-snakemake-rule)
-- [Sourcing `.bashrc` as part of shell command in snakemake rule](#sourcing-bashrc-as-part-of-shell-command-in-snakemake-rule)
-- [`--dag` and custom print messages](#--dag-and-custom-print-messages)
-- [SLURM related](#slurm-related)
-  - [Snakemake hangs when job times out or cancelled](#snakemake-hangs-when-job-times-out-or-cancelled)
-  - [Using snakemake profile](#using-snakemake-profile)
-  - [Job logs in append mode](#job-logs-in-append-mode)
-
+# Snakemake
 
 ## run rule locally
 

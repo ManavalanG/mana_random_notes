@@ -1,20 +1,3 @@
-- [SLURM](#slurm)
-  - [Basic commands](#basic-commands)
-    - [Submitting jobs](#submitting-jobs)
-    - [Listing jobs](#listing-jobs)
-      - [squeue](#squeue)
-    - [Info on currently running jobs](#info-on-currently-running-jobs)
-      - [scontrol](#scontrol)
-      - [sstat](#sstat)
-    - [Info on completed jobs](#info-on-completed-jobs)
-      - [seff](#seff)
-      - [sacct](#sacct)
-    - [Controlling jobs](#controlling-jobs)
-      - [scancel](#scancel)
-      - [scontrol](#scontrol-1)
-    - [Interactive jobs](#interactive-jobs)
-      - [srun](#srun)
-
 # SLURM
 
 ## Basic commands

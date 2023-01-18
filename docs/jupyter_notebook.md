@@ -1,11 +1,4 @@
-- [High-resolution plot outputs for high resolution monitors](#high-resolution-plot-outputs-for-high-resolution-monitors)
-- [Pretty display of multiple variables](#pretty-display-of-multiple-variables)
-- [Execute notebook from command line](#execute-notebook-from-command-line)
-- [In virtual environment mode](#in-virtual-environment-mode)
-- [Change working dir for the notebook](#change-working-dir-for-the-notebook)
-- [Magic stuff](#magic-stuff)
-  - [Access python variable in a cell using bash magic](#access-python-variable-in-a-cell-using-bash-magic)
-
+# Jupyter Notebook
 
 ## High-resolution plot outputs for high resolution monitors
 
