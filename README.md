@@ -1,4 +1,8 @@
-Random notes on following topics:
+# Random notes
+
+This documentation is used to store random notes, tips and tricks I find useful.
+
+Available on following topics:
 
 - [Python](./docs/python.md)
 - [Jupyter notebook](./docs/jupyter_notebook.md)
@@ -14,15 +18,17 @@ Random notes on following topics:
 
 ## Use mkdocs to serve
 
+[mkdocs](https://www.mkdocs.org/) is used to serve up the static website. Commands used:
+
 ```sh
 # create  conda env
-conda env create --file configs/envs/mkdocs.yaml
+conda env create --file "configs/envs/mkdocs.yaml"
 
 # activate env
 conda activate mkdocs
 
 # install more stuff via pip (not ideal but good enough for now)
-pip install -r configs/mkdocs/requirements.txt
+pip install -r "configs/mkdocs/requirements.txt"
 
 # now build website using website and serve live (locally)
 mkdocs serve
