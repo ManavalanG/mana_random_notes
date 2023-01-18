@@ -1,4 +1,4 @@
-# Helpful resources
+# Bioinformatics related
 
 ## One-liners
 

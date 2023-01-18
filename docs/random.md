@@ -1,4 +1,4 @@
-# Random tips
+# Other random tips
 
 ## Extract text from PDF
 

@@ -1,8 +1,8 @@
 # Random notes
 
-This documentation is used to store random notes, tips and tricks I find useful.
+This is a place to store random notes, tips and tricks I find useful for the future me. 
 
-Available on following topics:
+Topics:
 
 - [Python](./docs/python.md)
 - [Jupyter notebook](./docs/jupyter_notebook.md)
