@@ -2,8 +2,17 @@ site_name: Test the docs
 nav:
     - Home: index.md
     - Random notes:
-        - Bash: bash.md
-        - slurm: index.md
+        - python.md
+        - jupyter_notebook.md
+        - snakemake.md
+        - bash.md
+        - conda.md
+        - containers.md
+        - terminal.md
+        - slurm.md
+        - bioinformatics.md
+        - random.md
+
 theme:
   name: readthedocs
   highlightjs: true
