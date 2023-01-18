@@ -1,14 +1,14 @@
-site_name: Test the docs
+site_name: Mana's random notes
 nav:
     - Home: index.md
     - Random notes:
         - python.md
         - jupyter_notebook.md
         - snakemake.md
-        - bash.md
         - conda.md
         - containers.md
         - terminal.md
+        - bash.md
         - slurm.md
         - bioinformatics.md
         - random.md
@@ -16,6 +16,11 @@ nav:
 theme:
   name: readthedocs
   highlightjs: true
+
+markdown_extensions:
+  - markdown_include.include:
+      base_path: .
+  - admonition
 
 
 # site_name: Test the docs
