@@ -17,10 +17,10 @@ theme:
   name: readthedocs
   highlightjs: true
 
-# markdown_extensions:
-#   - markdown_include.include:
-#       base_path: .
-#   - admonition
+markdown_extensions:
+  - markdown_include.include:
+      base_path: .
+  - admonition
 
 
 # site_name: Test the docs
