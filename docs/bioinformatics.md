@@ -6,11 +6,11 @@
 2. https://github.com/crazyhottommy/bioinformatics-one-liners
 
 
-# fastq
+## fastq
 
-## Downsample fastq
+### Downsample fastq
 
-### BBMap's reformat.sh
+#### BBMap's reformat.sh
 
 - Downsampling using total number of bases.
 
@@ -24,7 +24,7 @@
     ```
 
 
-## fastq base count
+### fastq base count
 
 - https://www.biostars.org/p/78043/
 
@@ -36,7 +36,7 @@
     ```
 
 
-## Extract fastq reads by id
+### Extract fastq reads by id
 
 ```sh
 seqtk subseq in.fq name.lst > out.fq
@@ -45,7 +45,7 @@ seqtk subseq in.fq name.lst > out.fq
 [Source](https://www.biostars.org/p/45356/#45357)
 
 
-## Filter fastq by sequence length
+### Filter fastq by sequence length
 
 Script `filter_fasta_by_seq_length.pl` from [ampli-tools](https://github.com/timkahlke/ampli-tools).
 
@@ -59,7 +59,7 @@ filter_fasta_by_seq_length.pl  \
 ```
 
 
-## fastq format validation
+### fastq format validation
 
 Tool [FastQValidator](https://genome.sph.umich.edu/wiki/FastQValidator)
 
@@ -72,9 +72,9 @@ git clone git://github.com/statgen/libStatGen.git
 make
 ```
 
-# fasta
+## fasta
 
-## Filter by header
+### Filter by header
 
 - Using `bioawk`
 
@@ -86,13 +86,13 @@ make
     ```
 
 
-# vcf
+## vcf
 
-## bcftools
+### bcftools
 
 [bcftools](https://samtools.github.io/bcftools/bcftools.html) — utilities for variant calling and manipulating VCFs and BCFs. This tool can handle several filtering/querying/etc.. processes dealing with vcf data.
 
-### Commands available
+#### Commands available
 
 * annotate .. edit VCF files, add or remove annotations
 * call .. SNP/indel calling (former "view")
@@ -118,7 +118,7 @@ make
 * view .. subset, filter and convert VCF and BCF files
 
 
-### Examples
+#### Examples
 
 ```sh
 # Extract calls based on INFO values. Multiple conditions (and/or) can be used. Example below from Duphold.
@@ -138,7 +138,7 @@ $ bcftools query -f '%CHROM\t%POS\t%INFO/SVTYPE\n' tp-call.vcf | head
 ```
 
 
-## Chromosome mappings
+### Chromosome mappings
 
 
 This repository contains chromosome/contig name mappings between UCSC <-> Ensembl <-> Gencode for a variety of genomes:
@@ -146,7 +146,7 @@ This repository contains chromosome/contig name mappings between UCSC <-> Ensemb
 https://github.com/dpryan79/ChromosomeMappings
 
 
-# Some useful tools
+## Some useful tools
 
 - [vcf-validator](https://github.com/EBIvariation/vcf-validator)
   - Validates VCF format according to spec

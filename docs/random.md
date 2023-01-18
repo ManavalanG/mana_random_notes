@@ -1,15 +1,15 @@
-# Extract text from PDF
+## Extract text from PDF
 
-## Tools Tried
+### Tools Tried
 
 Following are based on my attempts to extract phenotype data from phenotips file.  These may not necessarily be true/apply for other pdf files.
 
-### pypdf2
+#### pypdf2
 
 Python module. Failed to extract most of the text. Extracted just small part of pdf.
 
 
-### pdfminder
+#### pdfminder
 
 - Command line tool
 - Required installation from source.
@@ -18,7 +18,7 @@ Python module. Failed to extract most of the text. Extracted just small part of 
 - Doesn't seem to allow ignoring header/footer though
 
 
-### pdftotext
+#### pdftotext
 
 - Command line tool
 
@@ -43,18 +43,18 @@ Python module. Failed to extract most of the text. Extracted just small part of 
     pdftotext -layout enc ASCII7 -y 80 -H 640 -W 1000 sample.pdf out.txt
     ```
 
-# Convert Excel xlsx to csv
+## Convert Excel xlsx to csv
 
 - [xlsx2csv](https://github.com/dilshod/xlsx2csv)
     - Easy to install; Worked well in my try.
 - [More tools](https://stackoverflow.com/questions/10557360/convert-xlsx-to-csv-in-linux-with-command-line)
 
 
-# UCSC genome browser
+## UCSC genome browser
 
-## Interesting features
+### Interesting features
 
-### See settings used in text format
+#### See settings used in text format
 
 Either of these would do:
 
@@ -62,22 +62,22 @@ Either of these would do:
 - Save settings file via `my data` -> `my session` -> `save settings`
 
 
-### Short match
+#### Short match
 
 BLAT is useful is seq is >20 bases. For shorted sequences (2-30 bases), [short match](http://genome.ucsc.edu/cgi-bin/hgTrackUi?hgsid=711072351_fyVRofGkapbguvAvVWR9j2gJjgoN&c=chr16&g=oligoMatch) should work better.
 
 
-### Show DNA seqs in color based on features
+#### Show DNA seqs in color based on features
 
 [Source](https://genome.ucsc.edu/goldenpath/help/hgTracksHelp.html#TrackFormatDNA)
 
 Can be used to color and toggle case for sections of DNA (exon, SNP, etc.)
 
-### Primer design
+#### Primer design
 
 [Source](http://genome.ucsc.edu/cgi-bin/hgPcr)
 
-### Save snapshots
+#### Save snapshots
 
 * `View` -> `PDF/PS`
 * Change `hgTracks` to `hgRenderTracks` in url to get the png output

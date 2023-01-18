@@ -1,6 +1,8 @@
-# Text Processing
+# Terminal
 
-## awk
+## Text Processing
+
+### awk
 
 ```sh
 ## GENERAL STUFF
@@ -39,7 +41,7 @@ Better to use cut command. See elsewhere in this page.
 [Source](https://gregable.com/2010/09/why-you-should-know-just-little-awk.html)
 
 
-## cut
+### cut
 
 ```sh
 # print from 3rd column
@@ -52,7 +54,7 @@ cut -f -3 INPUTFILE
 [Source](https://stackoverflow.com/a/1602220/3998252)
 
 
-## paste
+### paste
 
 Allows combining file as columns side by side.
 
@@ -79,17 +81,17 @@ D   4
 
 
 
-# Numeric, textual and statistical operations
+## Numeric, textual and statistical operations
 
-## datamash
+### datamash
 
 Commandline tool to get statistics.
 [Documentation](https://www.gnu.org/software/datamash/manual/datamash.html)
 
 
-# Prettifying
+## Prettifying
 
-## Pretty json
+### Pretty json
 
 ```sh
 curl 'url' | jq . > out.json
@@ -98,14 +100,14 @@ curl 'url' | jq . > out.json
 Warning: Apparently many pretty json formatters may have [problem handling very large and very small numbers](http://stackoverflow.com/questions/352098/how-can-i-pretty-print-json#comment52647558_15231463).
 
 
-## Viewing CSV files in terminal
+### Viewing CSV files in terminal
 
 ```sh
 csvtool readable filename
 ```
 
 
-## Preserving colors when redirecting to file
+### Preserving colors when redirecting to file
 
 Simply insert `unbuffer` before any command to make it think it is writing to an interactive output even if it is actually piping into another executable.
 
@@ -116,11 +118,11 @@ Works with `nohup` as well.
 [Source](https://superuser.com/a/751809)
 
 
-# Version control
+## Version control
 
-## Git submodule
+### Git submodule
 
-### Create submodule
+#### Create submodule
 
 ```sh
 # basic command
@@ -133,7 +135,7 @@ git submodule add <git_repo_url_> <local_path>
 git submodule add -b <branch> <git_repo_url_>
 ```
 
-### To checkout particular release/commit
+#### To checkout particular release/commit
 
 ```sh
 cd <submodule_directory>
@@ -141,20 +143,20 @@ git checkout v1.0
 ```
 [Source](https://stackoverflow.com/a/1778247/3998252)
 
-### Remove submodule
+#### Remove submodule
 
 No one-stop command. Follow the [solution here](https://stackoverflow.com/a/16162000/3998252).
 
 
-### Fetch repo with submodules
+#### Fetch repo with submodules
 
 ```sh
 git clone --recursive <git_url>
 ```
 
-# Others
+## Others
 
-## Recursive download of folder contents using wget
+### Recursive download of folder contents using wget
 
 ```sh
 wget -r url
@@ -166,7 +168,7 @@ Above command preserved the directory structure, but instead of downloading from
 
 
 
-## sshfs in Mac
+### sshfs in Mac
 
 Install appropriate OSX Fuse and then use following commands:
 
@@ -187,7 +189,7 @@ sudo umount -f /mnt/cluster
 ```
 
 
- ## md5sum
+ ### md5sum
 
 Creating checksum
 
@@ -210,7 +212,7 @@ md5sum -c <<<"[checksum_string] [filename]"
 ```
 
 
-## Redirecting output to both stdout and file
+### Redirecting output to both stdout and file
 
 If you only care about stdout:
 
@@ -229,7 +231,7 @@ Furthermore, if you want to _append_ to the log file, use `tee -a` as:
 [Source](https://stackoverflow.com/a/418899/3998252)
 
 
-## Save HTML webpage as screenshot
+### Save HTML webpage as screenshot
 
 [Multiple ways to save webpage as a screenshot image](http://cutycapt.sourceforge.net/)
 
@@ -241,9 +243,9 @@ pageres google.com
 pageres google.com 2048x1080
 ```
 
-## rclone
+### rclone
 
-### copy data on the server side
+#### copy data on the server side
 
 ```sh
 SRC="path/to/source"
@@ -256,9 +258,9 @@ rclone copy  --log-file=copy.log --progress --verbose box:$SRC box:$DEST
 rclone check --log-file=check.log --progress --verbose box:$SRC box:$DEST
 ```
 
-## rsync
+### rsync
 
-### Copy with resuming enabled after interruption
+#### Copy with resuming enabled after interruption
 
 ```sh
 $ CLU="xxxx@host.address.edu"
@@ -280,9 +282,9 @@ $ rsync --archive --human-readable --progress \
 - `--partial-dir` flag is to help with [resuming after interruption](https://unix.stackexchange.com/a/252969/339199).
 
 
-## module
+### module
 
-### Common commands
+#### Common commands
 
 | command                    | description                                                                                                          |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------- |
@@ -298,7 +300,7 @@ $ rsync --archive --human-readable --progress \
 [Source](http://www.bu.edu/tech/support/research/software-and-programming/software-and-applications/modules/)
 
 
-## xargs
+### xargs
 
 ```sh
 # useful options
@@ -320,7 +322,7 @@ $ rsync --archive --human-readable --progress \
 find *.err -mtime -1 | xargs -I {} -n 1 sh -c "echo {}; ./del.py -s {} | grep TIMEOUT"
 ```
 
-## fd
+### fd
 
 [A simple, fast and user-friendly alternative](https://github.com/sharkdp/fd) to `find`. While it does not aim to support all of find's powerful
 functionality, it provides sensible (opinionated) defaults for a majority of use cases.

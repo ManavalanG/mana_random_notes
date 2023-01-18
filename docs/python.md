@@ -1,6 +1,6 @@
-# pandas
+## pandas
 
-## Print without breaking rows/columns
+### Print without breaking rows/columns
 
 ```py
 import pandas as pd
@@ -13,7 +13,7 @@ pd.set_option('display.width', 10000)
 [Source](https://stackoverflow.com/a/11711637/3998252).
 
 
-## Replace NaN in one column with value from corresponding row of second column
+### Replace NaN in one column with value from corresponding row of second column
 
 ```py
 df['colA'].fillna(df['colB'], inplace=True)
@@ -22,7 +22,7 @@ df['colA'].fillna(df['colB'], inplace=True)
 [Source](https://stackoverflow.com/a/29177664/3998252)
 
 
-## Identify rows with NaN values
+### Identify rows with NaN values
 
 ```py
 df[df['a'].isnull()]
@@ -31,7 +31,7 @@ df[df['a'].isnull()]
 [Source](https://stackoverflow.com/a/38368514/3998252)
 
 
-## Conditionally replace values
+### Conditionally replace values
 
 ```py
 # Method 1; See https://stackoverflow.com/a/21608417/3998252
@@ -46,7 +46,7 @@ df['A'] = [1' if x == 'Z' else 0 for x in df['B']]
 ```
 
 
-## Remove columns
+### Remove columns
 ```py
 # to get into a new dataframe
 df = df.drop('column_name', axis=1)
@@ -57,7 +57,7 @@ df.drop('column_name', axis=1, inplace=True)
 [Source](https://stackoverflow.com/a/18145399/3998252)
 
 
-## Splitting column into multiple columns
+### Splitting column into multiple columns
 
 ```py
 # create a df
@@ -85,7 +85,7 @@ df.drop('column_name', axis=1, inplace=True)
 [Source](https://stackoverflow.com/a/39358924/3998252)
 
 
-## Extract strings by position into new column
+### Extract strings by position into new column
 
 ```py
 data_pd['new_col'] = data_pd['col_X'].str[:1]
@@ -94,7 +94,7 @@ data_pd['new_col'] = data_pd['col_X'].str[:1]
 [Source](https://stackoverflow.com/a/20970328/3998252)
 
 
-## Dataframe in percentage
+### Dataframe in percentage
 
 ```py
 # if by row
@@ -105,7 +105,7 @@ df.apply(lambda  x: x / x.sum() * 100, axis=0)
 ```
 
 
-## Sorting multilevel dataframe (pivot table)
+### Sorting multilevel dataframe (pivot table)
 
 ```py
     Group1    Group2
@@ -127,7 +127,7 @@ df.sort([('Group1', 'C')], ascending=False)
 [Source](https://stackoverflow.com/a/14734148/3998252)
 
 
-## Adding new column with mapped value from a dictionary
+### Adding new column with mapped value from a dictionary
 
 ```py
 df["col_2"] = df["col_1"].map(dict_name)
@@ -141,7 +141,7 @@ df.replace({"col_1": dict_name})
 [Source](https://stackoverflow.com/a/20250996/3998252)
 
 
-## Make dictionary from Pandas columns
+### Make dictionary from Pandas columns
 
 ```py
 # works only if 1:1 key to value pairing
@@ -151,7 +151,7 @@ dict_name = df.set_index('key_col')['value_col'].to_dict()
 [Source](https://stackoverflow.com/a/18695700/3998252)
 
 
-## Convert dataframe to file object
+### Convert dataframe to file object
 
 ```py
 from cStringIO import StringIO
@@ -164,7 +164,7 @@ xx.seek(0)  # this is important; position set to the beginning
 [Source](https://stackoverflow.com/a/38213524/3998252)
 
 
-## Rename column name
+### Rename column name
 
 ```py
 df2 = df.rename(columns={'old_name' : 'new_name'})
@@ -174,11 +174,11 @@ df2.rename(columns={'old_name' : 'new_name'}, inplace = True)
 ```
 
 
-## Ignore commented lines when reading files
+### Ignore commented lines when reading files
 Set comment='#' when using pd.read_csv
 
 
-## Reading massive files in chunks
+### Reading massive files in chunks
 
 Use `iterator` option for iterating file in chunks
 
@@ -191,7 +191,7 @@ for df in pd.read_csv('filename.gz',sep='\t', header=None, chunksize=chunksize, 
 [See here for more info on this](http://pythondata.com/working-large-csv-files-python/).
 
 
-## Checking if item is NaN or not:
+### Checking if item is NaN or not:
 
 ```py
 # using numpy
@@ -205,25 +205,25 @@ pandas.isnull(item) # allows string dtype
 ```
 
 
-# Charts
+## Charts
 
-## Creating reproducible charts
+### Creating reproducible charts
 
 http://www.jesshamrick.com/2016/04/13/reproducible-plots/
 
 
-## Why use fig, ax = plt.subplots():
+### Why use fig, ax = plt.subplots():
 
 [See here](https://stackoverflow.com/a/34162641/3998252)
 
 
-## Change figure parameters globally for all figures in a script
+### Change figure parameters globally for all figures in a script
 
 [See this](http://stackoverflow.com/a/38251497/3998252).
 See this page for parameters that can be modified -http://matplotlib.org/users/customizing.html.
 
 
-## Legends for chart with two Y-axes
+### Legends for chart with two Y-axes
 
 ```py
 fig, ax1 = plt.subplots()   # primary
@@ -241,7 +241,7 @@ ax1.legend(plots1 + plots2, labels1 + labels2)
 [Source](http://stackoverflow.com/a/10129461/3998252)
 
 
-## Force axis tick labels to be integers
+### Force axis tick labels to be integers
 
 ```py
 from matplotlib.ticker import MaxNLocator
@@ -253,7 +253,7 @@ ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 [Documentation](https://matplotlib.org/api/ticker_api.html#matplotlib.ticker.MaxNLocator)
 
 
-## xticks and xtick_labels
+### xticks and xtick_labels
 
 ```py
 ax.set_xticks(x_axis)
@@ -264,7 +264,7 @@ ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right')
 ```
 
 
-## importing matplotlib in cluster
+### importing matplotlib in cluster
 
 ```py
 import matplotlib as mpl
@@ -275,14 +275,14 @@ import matplotlib.pyplot as plt
 [Source](https://stackoverflow.com/a/13336944/3998252)
 
 
-## Axis in exponential format
+### Axis in exponential format
 
 ```py
 ax.ticklabel_format(style='sci', axis='y', scilimits=(0, 0))
 ```
 
 
-## Legend positioning without crowding
+### Legend positioning without crowding
 
 Method 1 (Preferred):
 
@@ -306,7 +306,7 @@ ax.legend(handles, labels, loc='center left', bbox_to_anchor=(1, 0.5))
 ```
 
 
-## constrained_layout
+### constrained_layout
 
 > constrained_layout automatically adjusts subplots and decorations like legends and colorbars so that they fit in the figure window while still preserving, as best they can, the logical layout requested by the user.
 
@@ -319,9 +319,9 @@ plt.subplots(constrained_layout=True)
 [Source](https://matplotlib.org/tutorials/intermediate/constrainedlayout_guide.html)
 
 
-# subprocess
+## subprocess
 
-## Stream stdout to terminal
+### Stream stdout to terminal
 
 ```py
 try:
@@ -340,9 +340,9 @@ except Exception:
 return None
 ```
 
-# logging
+## logging
 
-## Boilerplate using `colorlog`
+### Boilerplate using `colorlog`
 
 [`colorlog`](https://github.com/borntyping/python-colorlog) makes logs colorful and works across OS platforms.
 
@@ -373,7 +373,7 @@ logger.error("Error message")
 logger.critical("Critical message")
 ```
 
-## Using `fileConfig`
+### Using `fileConfig`
 
 Setup config file
 
@@ -411,7 +411,7 @@ logging.config.fileConfig('config.ini', disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
 ```
 
-### logging in modules
+#### logging in modules
 
 Above config based setup works for multiple modules as well.
 Example:
@@ -452,7 +452,7 @@ if __name__ == '__main__':
 [Source](https://stackoverflow.com/a/15735146/3998252)
 
 
-## Disable logs from specific libraries
+### Disable logs from specific libraries
 
 When logging in debug mode, logs from some third party python libraries (eg.: matplotlib, requests)
 are also produced. To turn them off:
@@ -464,7 +464,7 @@ logging.getLogger('matplotlib').setLevel(logging.WARNING)
 [Source](https://stackoverflow.com/a/51529172/3998252)
 
 
-## Capturing stack traces
+### Capturing stack traces
 
 Use `exc_info=True` with `error` level.
 
@@ -477,11 +477,11 @@ Shortcut for above:
 logging.exception("Exception occurred")
 ```
 
-# rich
+## rich
 
 [Source](https://rich.readthedocs.io/en/latest/progress.html)
 
-## Logging
+### Logging
 
 Boilerplate:
 
@@ -499,7 +499,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 ```
 
-## Traceback
+### Traceback
 
 ```py
 # makes rich default traceback handler so that all uncaught exceptions will be rendered with highlighting
@@ -507,7 +507,7 @@ from rich.traceback import install
 install()
 ```
 
-## Progress bar
+### Progress bar
 
 Basic usage:
 
@@ -520,9 +520,9 @@ for n in track(range(n), description="Processing..."):
 
 See [here](https://rich.readthedocs.io/en/latest/progress.html) for advanced setup.
 
-# Virtual environment
+## Virtual environment
 
-## pipenv
+### pipenv
 
 pipenv is the easiest way to manage virtual environment as it automates several easy-to-forget-but-required steps. It requires Python 3 installedthough.
 
@@ -585,18 +585,18 @@ pipenv run python script.py
 ```
 
 
-### Jupyter notebook
+#### Jupyter notebook
 
 Running jupyter notebook under pipenv is possible. See [jupyter_notebook.md](jupyter_notebook.md##in-virtual-environment-mode)
 
 
-# pytest
+## pytest
 
-## Random tips
+### Random tips
 
 - Use `-s` flag to show `stdout` and `stderr`, which are otherwise not shown by default.
 -
-## Testing multiple paramters for a test
+### Testing multiple paramters for a test
 
 https://docs.pytest.org/en/latest/parametrize.html
 
@@ -615,7 +615,7 @@ def test_eval(test_input, expected):
     assert eval(test_input) == expected
 ```
 
-## Using parameters with fixtures
+### Using parameters with fixtures
 
 This is allowed using `indirect`.
 
@@ -645,7 +645,7 @@ def test_hello(yup_docker, expected):
 ```
 
 
-## xfail
+### xfail
 
 Use [`xfail`](https://docs.pytest.org/en/latest/skipping.html#xfail-mark-test-functions-as-expected-to-fail) for test cases that are expected to fail.
 
@@ -653,13 +653,13 @@ Use [`xfail`](https://docs.pytest.org/en/latest/skipping.html#xfail-mark-test-fu
 - They can be used with [`@pytest.mark.parametrize`](https://docs.pytest.org/en/latest/skipping.html#skip-xfail-with-parametrize) as well.
 
 
-## Auto-run tests on saving
+### Auto-run tests on saving
 
 Install plugin [pytest-xdist](https://docs.pytest.org/en/3.0.0/xdist.html) and then use `-f` flag in pytest command.
 
 Note: This `-f` flag suppresses color output; Use [`--color=yes`](https://stackoverflow.com/a/24450942/3998252) to restore colors.
 
-## Coverage
+### Coverage
 
 https://pytest-cov.readthedocs.io/en/latest/readme.html#id1
 
@@ -672,7 +672,7 @@ Generate reports:
 --cov-report takes values html, xml, term and annotate
 
 
-# temp files/dir
+## temp files/dir
 
 [Built-in module `tempfile`](https://docs.python.org/2/library/tempfile.html) helps to easily manage temp files/dirs. They will get deleted automatically when the script exits, unless mentioned otherwise.  They can be named or unnamed.
 
