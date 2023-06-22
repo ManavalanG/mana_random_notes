@@ -21,6 +21,7 @@ markdown_extensions:
   - markdown_include.include:
       base_path: .
   - admonition
+  - markdown_include
 
 
 # site_name: Test the docs
