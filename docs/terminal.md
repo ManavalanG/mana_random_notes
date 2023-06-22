@@ -363,5 +363,3 @@ OPTIONS:
         --changed-before <date|dur>    Filter by file modification time (older than)
     -o, --owner <user:group>           Filter by owning user and/or group
 ```
-
-{!docs/index.md!}
