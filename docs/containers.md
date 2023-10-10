@@ -18,7 +18,6 @@ docker load --input image_name.tar
 docker run image_name
 ```
 
-
 ### Some `docker run` options/args
 
 [Source](https://docs.docker.com/engine/reference/commandline/run/)
@@ -43,7 +42,6 @@ docker run image_name
 # use -it for interactive seesion
 ```
 
-
 ## Singularity
 
 ### Basic stuff
@@ -59,11 +57,12 @@ singularity pull docker://godlovedc/lolcow  # with default name
 
 ### Mounting home dir
 
-By default singularity bind mounts `/home/$USER`, `/tmp`, and `$PWD` into your container at runtime. [Source](https://singularity.lbl.gov/quickstart#working-with-files).
+By default singularity bind mounts `/home/$USER`, `/tmp`, and `$PWD` into your container at runtime.
+[Source](https://singularity.lbl.gov/quickstart#working-with-files).
 
 If mounting home is undesirable, it may be turned off. For `singularity run`, these options are available:
 
-```
+```sh
     -H|--home <spec>    A home directory specification.  spec can either be a
                         src path or src:dest pair.  src is the source path
                         of the home directory outside the container and dest
@@ -74,10 +73,12 @@ If mounting home is undesirable, it may be turned off. For `singularity run`, th
 * Use `--no-home` if mounting home dir is not needed or undesirable.
 * USe `--home` if the container expects a home directory. Example usage: ``` --home `pwd`/abcd:$HOME```
 
-
 ### Avoid filing up `/tmp`
 
-Singularity by default mounts `/tmp` dir. In case of cluster, IT would be happy if temporary directory is pointed instead to a scratch directory, as singularity containers fill `/tmp` up fast. This can be changed by:
+Singularity by default mounts `/tmp` dir. In case of cluster, IT would be happy if temporary directory is pointed
+instead to a scratch directory, as singularity containers fill `/tmp` up fast. This can be changed by:
 
-* Set `export SINGULARITY_TMPDIR=path_to_dir`. Or, [is it `SINGULARITY_CACHEDIR`](https://singularity.lbl.gov/faq#no-space-left-on-device)?
-* When binding/mounting directories is possible (for example `singularity run`), use ``` --home `pwd`/tmp_dir:/tmp```. IT seems to prefer this solution.
+* Set `export SINGULARITY_TMPDIR=path_to_dir`. Or, [is it
+  `SINGULARITY_CACHEDIR`](https://singularity.lbl.gov/faq#no-space-left-on-device)?
+* When binding/mounting directories is possible (for example `singularity run`), use ``` --home `pwd`/tmp_dir:/tmp```.
+  IT seems to prefer this solution.

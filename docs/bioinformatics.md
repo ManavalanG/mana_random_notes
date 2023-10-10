@@ -5,7 +5,6 @@
 1. https://github.com/stephenturner/oneliners
 2. https://github.com/crazyhottommy/bioinformatics-one-liners
 
-
 ## fastq
 
 ### Downsample fastq
@@ -15,14 +14,13 @@
 - Downsampling using total number of bases.
 
 ```sh
-reformat.sh in1={input.illumina_r1} \\
+reformat.sh in1={input.illumina_r1} \\∂
             in2={input.illumina_r2} \\
             out1={params.unzipped_r1} \\
             out2={params.unzipped_r2} \\
             samplebasestarget=$BASECOUNT \\
             sampleseed={params.seed_random}
 ```
-
 
 ### fastq base count
 
@@ -35,7 +33,6 @@ reformat.sh in={input} \\
         2> {output}
 ```
 
-
 ### Extract fastq reads by id
 
 ```sh
@@ -43,7 +40,6 @@ seqtk subseq in.fq name.lst > out.fq
 ```
 
 [Source](https://www.biostars.org/p/45356/#45357)
-
 
 ### Filter fastq by sequence length
 
@@ -58,13 +54,13 @@ filter_fasta_by_seq_length.pl  \
         -a ${FILT_SIZE}
 ```
 
-
 ### fastq format validation
 
 Tool [FastQValidator](https://genome.sph.umich.edu/wiki/FastQValidator)
 
-!!! warning
-      Installation of release version `0.1.1a` resulted in error, and it was resolved based on [solution here](https://vcru.wisc.edu/simonlab/bioinformatics/programs/install/fastqvalidator.htm). In short, `libStatGen` supplied was out of date, and was obtained directly from its source.
+!!! warning Installation of release version `0.1.1a` resulted in error, and it was resolved based on [solution
+      here](https://vcru.wisc.edu/simonlab/bioinformatics/programs/install/fastqvalidator.htm). In short, `libStatGen`
+      supplied was out of date, and was obtained directly from its source.
 
 ```sh
 rm libStatGen -r
@@ -85,38 +81,37 @@ bioawk -c fastx '{if ($name ~ /OCS/) {print ">"$name " " $comment;print $seq}}' 
 # Pipe to "fold -120" to wrap sequence. Note: This would also wrap header line though.
 ```
 
-
 ## vcf
 
 ### bcftools
 
-[bcftools](https://samtools.github.io/bcftools/bcftools.html) — utilities for variant calling and manipulating VCFs and BCFs. This tool can handle several filtering/querying/etc.. processes dealing with vcf data.
+[bcftools](https://samtools.github.io/bcftools/bcftools.html) — utilities for variant calling and manipulating VCFs and
+BCFs. This tool can handle several filtering/querying/etc.. processes dealing with vcf data.
 
 #### Commands available
 
-* annotate .. edit VCF files, add or remove annotations
-* call .. SNP/indel calling (former "view")
-* cnv .. Copy Number Variation caller
-* concat .. concatenate VCF/BCF files from the same set of samples
-* consensus .. create consensus sequence by applying VCF variants
-* convert .. convert VCF/BCF to other formats and back
-* csq .. haplotype aware consequence caller
-* filter .. filter VCF/BCF files using fixed thresholds
-* gtcheck .. check sample concordance, detect sample swaps and contamination
-* index .. index VCF/BCF
-* isec .. intersections of VCF/BCF files
-* merge .. merge VCF/BCF files files from non-overlapping sample sets
-* mpileup .. multi-way pileup producing genotype likelihoods
-* norm .. normalize indels
-* plugin .. run user-defined plugin
-* polysomy .. detect contaminations and whole-chromosome aberrations
-* query .. transform VCF/BCF into user-defined formats
-* reheader .. modify VCF/BCF header, change sample names
-* roh .. identify runs of homo/auto-zygosity
-* sort .. sort VCF/BCF files
-* stats .. produce VCF/BCF stats (former vcfcheck)
-* view .. subset, filter and convert VCF and BCF files
-
+- annotate .. edit VCF files, add or remove annotations
+- call .. SNP/indel calling (former "view")
+- cnv .. Copy Number Variation caller
+- concat .. concatenate VCF/BCF files from the same set of samples
+- consensus .. create consensus sequence by applying VCF variants
+- convert .. convert VCF/BCF to other formats and back
+- csq .. haplotype aware consequence caller
+- filter .. filter VCF/BCF files using fixed thresholds
+- gtcheck .. check sample concordance, detect sample swaps and contamination
+- index .. index VCF/BCF
+- isec .. intersections of VCF/BCF files
+- merge .. merge VCF/BCF files files from non-overlapping sample sets
+- mpileup .. multi-way pileup producing genotype likelihoods
+- norm .. normalize indels
+- plugin .. run user-defined plugin
+- polysomy .. detect contaminations and whole-chromosome aberrations
+- query .. transform VCF/BCF into user-defined formats
+- reheader .. modify VCF/BCF header, change sample names
+- roh .. identify runs of homo/auto-zygosity
+- sort .. sort VCF/BCF files
+- stats .. produce VCF/BCF stats (former vcfcheck)
+- view .. subset, filter and convert VCF and BCF files
 
 #### Examples
 
@@ -137,14 +132,11 @@ $ bcftools query -f '%CHROM\t%POS\t%INFO/SVTYPE\n' tp-call.vcf | head
 10	1741456	DEL
 ```
 
-
 ### Chromosome mappings
-
 
 This repository contains chromosome/contig name mappings between UCSC <-> Ensembl <-> Gencode for a variety of genomes:
 
 https://github.com/dpryan79/ChromosomeMappings
-
 
 ## Some useful tools
 

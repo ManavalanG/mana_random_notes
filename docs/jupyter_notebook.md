@@ -7,10 +7,10 @@
 %config InlineBackend.figure_format = 'retina'
 ```
 
-
 ## Pretty display of multiple variables
 
-By default, Jupyter pretty displays variable in the last line of a cell. Instead, if such pretty display is preferred for multiple variables despite their position inside
+By default, Jupyter pretty displays variable in the last line of a cell. Instead, if such pretty display is preferred
+for multiple variables despite their position inside
 
 ```py
 from IPython.core.interactiveshell import InteractiveShell
@@ -18,7 +18,6 @@ InteractiveShell.ast_node_interactivity = "all"
 ```
 
 [Source](https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/)
-
 
 ## Execute notebook from command line
 
@@ -43,7 +42,6 @@ jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=None --i
 
 To get around cell timeout when running from commandline. use "--ExecutePreprocessor.timeout=None".
 
-
 ## In virtual environment mode
 
 Use of Jupyter notebook in virtual environment is easy to manage via `pipenv`
@@ -62,7 +60,6 @@ pipenv install jupyter_contrib_nbextensions
 pipenv run jupyter nbconvert --<other_flags/params>
 ```
 
-
 ## Change working dir for the notebook
 
 ```py
@@ -73,8 +70,7 @@ print (f"Working dir: {os.getcwd()}")
 
 [Source](https://stackoverflow.com/a/35665295/3998252)
 
-!!! note
-    `%cd` line magic can be used as well.
+!!! note `%cd` line magic can be used as well.
 
 ## Magic stuff
 
@@ -84,19 +80,17 @@ Some interesting magics:
 | -------- | :-------------------------------------------------: |
 | %%bash   |        Run cells with bash in a subprocess.         |
 | %%script |           Run a cell via a shell command            |
-| !      |        To run a shell command        |
+| !        |               To run a shell command                |
 | %cd      |        Change the current working directory.        |
 | %env     |      Get, set, or list environment variables.       |
 | %run     |   Run the named file inside IPython as a program.   |
 | %time    | Time execution of a Python statement or expression. |
 
-
 ### Access python variable in a cell using bash magic
 
-```
+```sh
 %%bash -s "$myPythonVar" "$myOtherVar"
 echo "This bash script knows about $1 and $2"
 ```
 
 [Source](https://stackoverflow.com/a/19674648/3998252)
-

@@ -32,7 +32,6 @@ squeue -u <username> -t RUNNING
 # List all pending jobs for a user
 squeue -u <username> -t PENDING
 
-
 # squeue aliases I find useful
 alias SQ='squeue -o "%.8i %.20j %.10P %.7u %.5D %.4C %.11M  %.11l %.3t %.11m %R" -u $USER'
 alias SQ_long='squeue -o "%.8i %.20j %.10P %.7u %.5D %.4C %.11M  %.11l %.3t %.11m %R %V %o" -u $USER'  #also shows submission time and command ran
@@ -63,7 +62,6 @@ sstat --format=JobID,AveCPU,AvePages,AveRSS,AveVMSize --allsteps -j <jobid>
 alias SR='sstat --format="JobID,NTasks,AveCPU,AvePages,AveRSS,AveVMSize,MaxRSSNode" --allsteps'
 ```
 
-
 ### Info on completed jobs
 
 #### seff
@@ -93,51 +91,49 @@ sacct -S $(date -d '1 month ago' +%D-%R) -E $(date -d '2 weeks ago' +%D-%R)
 alias SC='sacct --format="JobID,JobName,Ntasks,MaxRSS,Elapsed,state,NodeList,ReqMem,MaxVMSize,AveVMSize,Partition,AllocTRES%40" --units=M'
 ```
 
-
 ##### Useful flags and their meaning
 
 [Source](https://rc.byu.edu/wiki/?id=Using+sacct)
 
 ###### CPU
 
-| Flag       | Meaning                                                            |
-|------------|--------------------------------------------------------------------|
-| NCPUs      | Number of CPUs used by the job                                     |
-| NNodes     | Number of nodes used by the job                                    |
-| UserCPU    | User CPU time used by the job                                      |
-| SystemCPU  | System CPU time used by the job                                    |
-| TotalCPU   | Total CPU time used by the job; sum of UserCPU and SystemCPU       |
-| CPUTime    | Elapsed*NCPUs (total CPU time a perfectly efficient job would use) |
+| Flag      | Meaning                                                            |
+| --------- | ------------------------------------------------------------------ |
+| NCPUs     | Number of CPUs used by the job                                     |
+| NNodes    | Number of nodes used by the job                                    |
+| UserCPU   | User CPU time used by the job                                      |
+| SystemCPU | System CPU time used by the job                                    |
+| TotalCPU  | Total CPU time used by the job; sum of UserCPU and SystemCPU       |
+| CPUTime   | Elapsed*NCPUs (total CPU time a perfectly efficient job would use) |
 
 ###### Memory
 
-| Flag    | Meaning                                                                   |
-|---------|---------------------------------------------------------------------------|
-| ReqMem  | Amount of memory requested; suffixed with 'c' if per CPU, 'n' if per node |
-| AveRSS  | Average memory use for all tasks                                          |
-| MaxRSS  | Maximum memory use of any task                                            |
+| Flag   | Meaning                                                                   |
+| ------ | ------------------------------------------------------------------------- |
+| ReqMem | Amount of memory requested; suffixed with 'c' if per CPU, 'n' if per node |
+| AveRSS | Average memory use for all tasks                                          |
+| MaxRSS | Maximum memory use of any task                                            |
 
 ###### Time
 
-| Flag       | Meaning                             |
-|------------|-------------------------------------|
-| Submit     | When the job was submitted          |
-| Start      | When the job started                |
-| End        | When the job ended                  |
-| TimeLimit  | How much time the job was allocated |
-| Elapsed    | How much time the job used          |
+| Flag      | Meaning                             |
+| --------- | ----------------------------------- |
+| Submit    | When the job was submitted          |
+| Start     | When the job started                |
+| End       | When the job ended                  |
+| TimeLimit | How much time the job was allocated |
+| Elapsed   | How much time the job used          |
 
 ###### I/O
 
-| Flag          | Meaning                                       |
-|---------------|-----------------------------------------------|
-| AveDiskRead   | Average number of bytes read for all tasks    |
-| MaxDiskRead   | Maximum number of bytes read for any task     |
-| AveDiskWrite  | Average number of bytes written for all tasks |
-| MaxDiskWrite  | Maximum number of bytes read for any task     |
-| AvePages      | Average number of page faults for all tasks   |
-| MaxPages      | Maximum number of page faults for any task    |
-
+| Flag         | Meaning                                       |
+| ------------ | --------------------------------------------- |
+| AveDiskRead  | Average number of bytes read for all tasks    |
+| MaxDiskRead  | Maximum number of bytes read for any task     |
+| AveDiskWrite | Average number of bytes written for all tasks |
+| MaxDiskWrite | Maximum number of bytes read for any task     |
+| AvePages     | Average number of page faults for all tasks   |
+| MaxPages     | Maximum number of page faults for any task    |
 
 ### Controlling jobs
 
@@ -169,7 +165,6 @@ scontrol release <jobid>
 # To requeue (cancel and rerun) a particular job
 scontrol requeue <jobid>
 ```
-
 
 ### Interactive jobs
 

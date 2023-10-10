@@ -8,7 +8,6 @@ localrules: foo
 
 Can be called multiple times in Snakefile.
 
-
 ## Using lambda functions inside rules
 
 Listed below are some of my examples that used lambda for conditional situations.
@@ -40,14 +39,12 @@ rule extract_Adjusted_AC_AN_exac:
         "..."
 ```
 
-
 ## Using dictionary with wildcards as keys
 
 ```py
 input:
     bams = lambda wildcards: dict_name[wildcards.sample]
 ```
-
 
 ## `zip` with >2 wildcards
 
@@ -62,10 +59,10 @@ expand(expand(
 
 [Source](https://stackoverflow.com/a/48864284/3998252)
 
-
 ## Using bash script that sends its own job in a snakemake rule
 
-Let's say `script.sh` sends its own job to a cluster. To use this script in a snakemake rule, use `-K` flag with `bsub` in that shell script and then use `wait` command in snakemake rule.
+Let's say `script.sh` sends its own job to a cluster. To use this script in a snakemake rule, use `-K` flag with `bsub`
+in that shell script and then use `wait` command in snakemake rule.
 
 ```py
 rule xxx:
@@ -76,7 +73,6 @@ rule xxx:
         """
 ```
 
-
 ## Sourcing `.bashrc` as part of shell command in snakemake rule
 
 ```sh
@@ -85,15 +81,17 @@ set +u; source /path/to/.bashrc; set -u
 
 [Source](https://stackoverflow.com/a/49681210/3998252).
 
-
 ## `--dag` and custom print messages
 
-If custom print messages are used in snakemake pipeline, [`--dag` visualization](https://snakemake.readthedocs.io/en/stable/executing/cluster-cloud.html#visualization) will run into error.  To make them play nice, use dot's commenting in print messages.
+If custom print messages are used in snakemake pipeline, [`--dag`
+visualization](https://snakemake.readthedocs.io/en/stable/executing/cluster-cloud.html#visualization) will run into
+error.  To make them play nice, use dot's commenting in print messages.
 
 According to [dot manual](https://www.systutorials.com/docs/linux/man/1-dot/#lbAF),
 >  Comments may be /*C-like*/ or //C++-like.
 
 Example:
+
 ```py
 print (f'// yo yo yo: "{x}"')
 ```
@@ -102,9 +100,12 @@ print (f'// yo yo yo: "{x}"')
 
 ### Snakemake hangs when job times out or cancelled
 
-This is a problem as [reported here](https://stackoverflow.com/q/52500725/3998252). I'm copying my answer from that site to solve this issue:
+This is a problem as [reported here](https://stackoverflow.com/q/52500725/3998252). I'm copying my answer from that site
+to solve this issue:
 
-Snakemake doesn't recognize all kinds of job statuses in slurm (and also in other job schedulers). To bridge this gap, snakemake provides option `--cluster-status`, where custom python script can be provided. As per [snakemake's documentation](https://snakemake.readthedocs.io/en/stable/executing/cli.html#CLUSTER):
+Snakemake doesn't recognize all kinds of job statuses in slurm (and also in other job schedulers). To bridge this gap,
+snakemake provides option `--cluster-status`, where custom python script can be provided. As per [snakemake's
+documentation](https://snakemake.readthedocs.io/en/stable/executing/cli.html#CLUSTER):
 
 ```sh
  --cluster-status
@@ -117,7 +118,8 @@ Snakemake expects it to return ‘success’ if the job was successfull, ‘fail
 
 ```
 
-[Example shown](https://snakemake.readthedocs.io/en/stable/tutorial/additional_features.html#using-cluster-status) in snakemake's doc to use this feature:
+[Example shown](https://snakemake.readthedocs.io/en/stable/tutorial/additional_features.html#using-cluster-status) in
+snakemake's doc to use this feature:
 
 ```py
 #!/usr/bin/env python
@@ -144,18 +146,18 @@ $ snakemake all --cluster "sbatch --cpus-per-task=1 --parsable" --cluster-status
 ```
 
 ---
-Alternatively, you may use premade custom scripts for several job schedulers (slurm, lsf, etc), available via [Snakemake-Profiles](https://github.com/Snakemake-Profiles/doc). Here is the one for slurm - [slurm-status.py](https://github.com/Snakemake-Profiles/slurm/blob/master/%7B%7Bcookiecutter.profile_name%7D%7D/slurm-status.py).
-
-
+Alternatively, you may use premade custom scripts for several job schedulers (slurm, lsf, etc), available via
+[Snakemake-Profiles](https://github.com/Snakemake-Profiles/doc). Here is the one for slurm -
+[slurm-status.py](https://github.com/Snakemake-Profiles/slurm/blob/master/%7B%7Bcookiecutter.profile_name%7D%7D/slurm-status.py).
 
 ### Using snakemake profile
 
-Snakemake profiles make it easy to always use certain flags and options. Various premade [Snakemake-Profiles](https://github.com/Snakemake-Profiles/doc) have been made available by the community/authors. For slurm, I use my own forked repo - https://github.com/ManavalanG/slurm.
+Snakemake profiles make it easy to always use certain flags and options. Various premade
+[Snakemake-Profiles](https://github.com/Snakemake-Profiles/doc) have been made available by the community/authors. For
+slurm, I use my own forked repo - https://github.com/ManavalanG/slurm.
 
-!!! note
-    When setting up, for `submit_script`, choose `slurm-submit-advanced.py` as this [allows the usage of `--cluster-config` option](https://github.com/Snakemake-Profiles/slurm/issues/23#issuecomment-527379117).
-
-
+!!! note When setting up, for `submit_script`, choose `slurm-submit-advanced.py` as this [allows the usage of
+    `--cluster-config` option](https://github.com/Snakemake-Profiles/slurm/issues/23#issuecomment-527379117).
 
 ### Job logs in append mode
 
@@ -168,5 +170,3 @@ From `sbatch` [doc](https://slurm.schedmd.com/sbatch.html):
 
         Open the output and error files using append or truncate mode as specified. The default value is specified by the system configuration parameter JobFileAppend.
 ```
-
-

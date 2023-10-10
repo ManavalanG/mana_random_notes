@@ -18,7 +18,6 @@ awk '{print $NF-2}'
 # use custom delimiter
 awk 'BEGIN{FS=":"} {print $1}'
 
-
 ## CONDITIONAL STUFF
 # using IF conditions
 awk '{if ($1=="chr21" && $4>80) {print $0}}'
@@ -29,7 +28,6 @@ echo "snowball" | awk '$1 ~ /snow/'
 # print if a substring is NOT part of the string
 echo "snowball" | awk '$1 !~ /rain/'
 
-
 ## COOL TRICKS
 # print row number
 awk '{print NR ") " $1 " -> " $(NF-2)}'
@@ -39,7 +37,6 @@ Better to use cut command. See elsewhere in this page.
 ```
 
 [Source](https://gregable.com/2010/09/why-you-should-know-just-little-awk.html)
-
 
 ### cut
 
@@ -52,7 +49,6 @@ cut -f -3 INPUTFILE
 ```
 
 [Source](https://stackoverflow.com/a/1602220/3998252)
-
 
 ### paste
 
@@ -79,15 +75,11 @@ D   4
 
 [Source](https://unix.stackexchange.com/a/117590)
 
-
-
 ## Numeric, textual and statistical operations
 
 ### datamash
 
-Commandline tool to get statistics.
-[Documentation](https://www.gnu.org/software/datamash/manual/datamash.html)
-
+Commandline tool to get statistics. [Documentation](https://www.gnu.org/software/datamash/manual/datamash.html)
 
 ## Prettifying
 
@@ -97,8 +89,8 @@ Commandline tool to get statistics.
 curl 'url' | jq . > out.json
 ```
 
-Warning: Apparently many pretty json formatters may have [problem handling very large and very small numbers](http://stackoverflow.com/questions/352098/how-can-i-pretty-print-json#comment52647558_15231463).
-
+Warning: Apparently many pretty json formatters may have [problem handling very large and very small
+numbers](http://stackoverflow.com/questions/352098/how-can-i-pretty-print-json#comment52647558_15231463).
 
 ### Viewing CSV files in terminal
 
@@ -106,17 +98,16 @@ Warning: Apparently many pretty json formatters may have [problem handling very 
 csvtool readable filename
 ```
 
-
 ### Preserving colors when redirecting to file
 
-Simply insert `unbuffer` before any command to make it think it is writing to an interactive output even if it is actually piping into another executable.
+Simply insert `unbuffer` before any command to make it think it is writing to an interactive output even if it is
+actually piping into another executable.
 
 If colors are not visible with `less`, use `less -R`.
 
 Works with `nohup` as well.
 
 [Source](https://superuser.com/a/751809)
-
 
 ## Version control
 
@@ -141,12 +132,12 @@ git submodule add -b <branch> <git_repo_url_>
 cd <submodule_directory>
 git checkout v1.0
 ```
+
 [Source](https://stackoverflow.com/a/1778247/3998252)
 
 #### Remove submodule
 
 No one-stop command. Follow the [solution here](https://stackoverflow.com/a/16162000/3998252).
-
 
 #### Fetch repo with submodules
 
@@ -162,11 +153,11 @@ git clone --recursive <git_url>
 wget -r url
 ```
 
-Above command preserved the directory structure, but instead of downloading from current directory specified in URL, it downloads at least few directories up in the directory structure. I had to identify the folder and copy it. Minor hiccup but works well.
+Above command preserved the directory structure, but instead of downloading from current directory specified in URL, it
+downloads at least few directories up in the directory structure. I had to identify the folder and copy it. Minor hiccup
+but works well.
 
 [Source](http://stackoverflow.com/questions/113886/how-to-recursively-download-a-folder-via-ftp-on-linux)
-
-
 
 ### sshfs in Mac
 
@@ -188,8 +179,7 @@ sudo umount /mnt/cluster
 sudo umount -f /mnt/cluster
 ```
 
-
- ### md5sum
+### md5sum
 
 Creating checksum
 
@@ -211,7 +201,6 @@ md5sum -c <md5_file>
 md5sum -c <<<"[checksum_string] [filename]"
 ```
 
-
 ### Redirecting output to both stdout and file
 
 If you only care about stdout:
@@ -222,14 +211,14 @@ If you want to include stderr, do:
 
     program [arguments...] 2>&1 | tee outfile
 
-`2>&1` redirects channel 2 (stderr/standard error) into channel 1 (stdout/standard output), such that both is written as stdout. It is also directed to the given output file as of the `tee` command.
+`2>&1` redirects channel 2 (stderr/standard error) into channel 1 (stdout/standard output), such that both is written as
+stdout. It is also directed to the given output file as of the `tee` command.
 
 Furthermore, if you want to _append_ to the log file, use `tee -a` as:
 
     program [arguments...] 2>&1 | tee -a outfile
 
 [Source](https://stackoverflow.com/a/418899/3998252)
-
 
 ### Save HTML webpage as screenshot
 
@@ -281,7 +270,6 @@ $ rsync --archive --human-readable --progress \
 - [See here](https://serverfault.com/a/141778) for what `--archive` flag does.
 - `--partial-dir` flag is to help with [resuming after interruption](https://unix.stackexchange.com/a/252969/339199).
 
-
 ### module
 
 #### Common commands
@@ -298,7 +286,6 @@ $ rsync --archive --human-readable --progress \
 | module purge               | Unloads all loaded modules                                                                                           |
 
 [Source](http://www.bu.edu/tech/support/research/software-and-programming/software-and-applications/modules/)
-
 
 ### xargs
 
@@ -324,22 +311,26 @@ find *.err -mtime -1 | xargs -I {} -n 1 sh -c "echo {}; ./del.py -s {} | grep TI
 
 ### fd
 
-[A simple, fast and user-friendly alternative](https://github.com/sharkdp/fd) to `find`. While it does not aim to support all of find's powerful
-functionality, it provides sensible (opinionated) defaults for a majority of use cases.
+[A simple, fast and user-friendly alternative](https://github.com/sharkdp/fd) to `find`. While it does not aim to
+support all of find's powerful functionality, it provides sensible (opinionated) defaults for a majority of use cases.
 
 Few things to note:
+
 - case-insensitive by default
-- Smart case: the search is case-insensitive by default. It switches to case-sensitive if the pattern contains an uppercase character.
+- Smart case: the search is case-insensitive by default. It switches to case-sensitive if the pattern contains an
+  uppercase character.
 - Ignores hidden directories and files, by default.
 - Ignores patterns from your .gitignore, by default.
 - Allows specifying time/duration in human readable format. Example: `--newer 2weeks`.
 
 Usage:
+
 ```sh
 fd [FLAGS/OPTIONS] [<pattern>] [<path>...]
 ```
 
 Some useful flags/options:
+
 ```sh
 FLAGS:
     -H, --hidden            Search hidden files and directories

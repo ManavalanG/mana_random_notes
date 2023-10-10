@@ -23,7 +23,6 @@ conda env list
 conda env remove -n env_name
 ```
 
-
 ## Example environment file
 
 ```yaml
@@ -41,7 +40,8 @@ dependencies:
 
 ## ready and go envs
 
-Meant to use for random, one-off and minor task scenarios that don't justify work spent on creating project/task/repo specifc conda envs. 
+Meant to use for random, one-off and minor task scenarios that don't justify work spent on creating project/task/repo
+specifc conda envs.
 
 ### Python stuff
 

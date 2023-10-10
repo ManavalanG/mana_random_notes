@@ -14,7 +14,6 @@ pd.set_option('display.width', 10000)
 
 [Source](https://stackoverflow.com/a/11711637/3998252).
 
-
 ### Replace NaN in one column with value from corresponding row of second column
 
 ```py
@@ -23,7 +22,6 @@ df['colA'].fillna(df['colB'], inplace=True)
 
 [Source](https://stackoverflow.com/a/29177664/3998252)
 
-
 ### Identify rows with NaN values
 
 ```py
@@ -31,7 +29,6 @@ df[df['a'].isnull()]
 ```
 
 [Source](https://stackoverflow.com/a/38368514/3998252)
-
 
 ### Conditionally replace values
 
@@ -47,8 +44,8 @@ df['A'] = np.where(df['B']=='Z', 1, 0)
 df['A'] = [1' if x == 'Z' else 0 for x in df['B']]
 ```
 
-
 ### Remove columns
+
 ```py
 # to get into a new dataframe
 df = df.drop('column_name', axis=1)
@@ -56,8 +53,8 @@ df = df.drop('column_name', axis=1)
 # to remove it inplace
 df.drop('column_name', axis=1, inplace=True)
 ```
-[Source](https://stackoverflow.com/a/18145399/3998252)
 
+[Source](https://stackoverflow.com/a/18145399/3998252)
 
 ### Splitting column into multiple columns
 
@@ -86,7 +83,6 @@ df.drop('column_name', axis=1, inplace=True)
 
 [Source](https://stackoverflow.com/a/39358924/3998252)
 
-
 ### Extract strings by position into new column
 
 ```py
@@ -94,7 +90,6 @@ data_pd['new_col'] = data_pd['col_X'].str[:1]
 ```
 
 [Source](https://stackoverflow.com/a/20970328/3998252)
-
 
 ### Dataframe in percentage
 
@@ -105,7 +100,6 @@ df.apply(lambda  x: x / x.sum() * 100, axis=1)
 # if by column
 df.apply(lambda  x: x / x.sum() * 100, axis=0)
 ```
-
 
 ### Sorting multilevel dataframe (pivot table)
 
@@ -128,7 +122,6 @@ df.sort([('Group1', 'C')], ascending=False)
 
 [Source](https://stackoverflow.com/a/14734148/3998252)
 
-
 ### Adding new column with mapped value from a dictionary
 
 ```py
@@ -137,11 +130,9 @@ df["col_2"] = df["col_1"].map(dict_name)
 
 [Source](https://stackoverflow.com/a/24216489/3998252)
 
-If desired to replace existing column with dictionary value:
-df.replace({"col_1": dict_name})
+If desired to replace existing column with dictionary value: df.replace({"col_1": dict_name})
 
 [Source](https://stackoverflow.com/a/20250996/3998252)
-
 
 ### Make dictionary from Pandas columns
 
@@ -151,7 +142,6 @@ dict_name = df.set_index('key_col')['value_col'].to_dict()
 ```
 
 [Source](https://stackoverflow.com/a/18695700/3998252)
-
 
 ### Convert dataframe to file object
 
@@ -165,7 +155,6 @@ xx.seek(0)  # this is important; position set to the beginning
 
 [Source](https://stackoverflow.com/a/38213524/3998252)
 
-
 ### Rename column name
 
 ```py
@@ -175,10 +164,9 @@ df2 = df.rename(columns={'old_name' : 'new_name'})
 df2.rename(columns={'old_name' : 'new_name'}, inplace = True)
 ```
 
-
 ### Ignore commented lines when reading files
-Set comment='#' when using pd.read_csv
 
+Set comment='#' when using pd.read_csv
 
 ### Reading massive files in chunks
 
@@ -192,8 +180,7 @@ for df in pd.read_csv('filename.gz',sep='\t', header=None, chunksize=chunksize, 
 
 [See here for more info on this](http://pythondata.com/working-large-csv-files-python/).
 
-
-### Checking if item is NaN or not:
+### Checking if item is NaN or not
 
 ```py
 # using numpy
@@ -206,24 +193,20 @@ math.isnan(item)    # item can't be string dtype
 pandas.isnull(item) # allows string dtype
 ```
 
-
 ## Charts
 
 ### Creating reproducible charts
 
 http://www.jesshamrick.com/2016/04/13/reproducible-plots/
 
-
-### Why use fig, ax = plt.subplots():
+### Why use fig, ax = plt.subplots()
 
 [See here](https://stackoverflow.com/a/34162641/3998252)
 
-
 ### Change figure parameters globally for all figures in a script
 
-[See this](http://stackoverflow.com/a/38251497/3998252).
-See this page for parameters that can be modified -http://matplotlib.org/users/customizing.html.
-
+[See this](http://stackoverflow.com/a/38251497/3998252). See this page for parameters that can be modified
+-http://matplotlib.org/users/customizing.html.
 
 ### Legends for chart with two Y-axes
 
@@ -242,7 +225,6 @@ ax1.legend(plots1 + plots2, labels1 + labels2)
 
 [Source](http://stackoverflow.com/a/10129461/3998252)
 
-
 ### Force axis tick labels to be integers
 
 ```py
@@ -254,7 +236,6 @@ ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 [Source](https://stackoverflow.com/a/38096332/3998252)
 [Documentation](https://matplotlib.org/api/ticker_api.html#matplotlib.ticker.MaxNLocator)
 
-
 ### xticks and xtick_labels
 
 ```py
@@ -264,7 +245,6 @@ ax.set_xticklabels(x_labels, rotation=45, ha='right')
 # when using seaborn where x_labels were preset, for example-seaborn
 ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right')
 ```
-
 
 ### importing matplotlib in cluster
 
@@ -276,13 +256,11 @@ import matplotlib.pyplot as plt
 
 [Source](https://stackoverflow.com/a/13336944/3998252)
 
-
 ### Axis in exponential format
 
 ```py
 ax.ticklabel_format(style='sci', axis='y', scilimits=(0, 0))
 ```
-
 
 ### Legend positioning without crowding
 
@@ -307,10 +285,10 @@ handles, labels = ax.get_legend_handles_labels()
 ax.legend(handles, labels, loc='center left', bbox_to_anchor=(1, 0.5))
 ```
 
-
 ### constrained_layout
 
-> constrained_layout automatically adjusts subplots and decorations like legends and colorbars so that they fit in the figure window while still preserving, as best they can, the logical layout requested by the user.
+> constrained_layout automatically adjusts subplots and decorations like legends and colorbars so that they fit in the
+> figure window while still preserving, as best they can, the logical layout requested by the user.
 
 **Warning**: Constrained Layout is experimental for matplot v3
 
@@ -319,7 +297,6 @@ plt.subplots(constrained_layout=True)
 ```
 
 [Source](https://matplotlib.org/tutorials/intermediate/constrainedlayout_guide.html)
-
 
 ## subprocess
 
@@ -362,11 +339,12 @@ logger.addHandler(handler)
 ```
 
 Why use `__name__`?
-> The name of the logger corresponding to the __name__ variable is logged as __main__, which is the name Python assigns to the module where execution starts. If this file is imported by some other module, then the __name__ variable would correspond to its name logging_example. Here’s how it would look:
-[Source](https://realpython.com/python-logging/)
-
+> The name of the logger corresponding to the __name__ variable is logged as __main__, which is the name Python assigns
+to the module where execution starts. If this file is imported by some other module, then the __name__ variable would
+correspond to its name logging_example. Here’s how it would look: [Source](https://realpython.com/python-logging/)
 
 Levels available example:
+
 ```py
 logger.debug("Debug message")
 logger.info("Information message")
@@ -404,8 +382,8 @@ formatter=color
 args=(sys.stdout,)
 ```
 
-Use this config in script as below. Note that, in this implementation,
-`colorlog` will be imported as config file uses `colorlog` formatter.
+Use this config in script as below. Note that, in this implementation, `colorlog` will be imported as config file uses
+`colorlog` formatter.
 
 ```py
 import logging.config
@@ -415,8 +393,7 @@ logger = logging.getLogger(__name__)
 
 #### logging in modules
 
-Above config based setup works for multiple modules as well.
-Example:
+Above config based setup works for multiple modules as well. Example:
 
 *Module file:* `xxx.py`
 
@@ -451,20 +428,20 @@ def main():
 if __name__ == '__main__':
     main()
 ```
-[Source](https://stackoverflow.com/a/15735146/3998252)
 
+[Source](https://stackoverflow.com/a/15735146/3998252)
 
 ### Disable logs from specific libraries
 
-When logging in debug mode, logs from some third party python libraries (eg.: matplotlib, requests)
-are also produced. To turn them off:
+When logging in debug mode, logs from some third party python libraries (eg.: matplotlib, requests) are also produced.
+To turn them off:
 
 ```py
 # Add this code after code for logging config
 logging.getLogger('matplotlib').setLevel(logging.WARNING)
 ```
-[Source](https://stackoverflow.com/a/51529172/3998252)
 
+[Source](https://stackoverflow.com/a/51529172/3998252)
 
 ### Capturing stack traces
 
@@ -475,6 +452,7 @@ logging.error("Exception occurred", exc_info=True)
 ```
 
 Shortcut for above:
+
 ```py
 logging.exception("Exception occurred")
 ```
@@ -526,7 +504,8 @@ See [here](https://rich.readthedocs.io/en/latest/progress.html) for advanced set
 
 ### pipenv
 
-pipenv is the easiest way to manage virtual environment as it automates several easy-to-forget-but-required steps. It requires Python 3 installedthough.
+pipenv is the easiest way to manage virtual environment as it automates several easy-to-forget-but-required steps. It
+requires Python 3 installedthough.
 
 a. Creating new/fresh virtual environment
 
@@ -550,6 +529,7 @@ exit
 ```
 
 b. Recreating virtual environment from Pipfile
+
 ```sh
 # installs all packages from Pipfile
 pipenv install
@@ -586,18 +566,16 @@ e. Simply running a python script with pipenv without spawning a new shell
 pipenv run python script.py
 ```
 
-
 #### Jupyter notebook
 
-Running jupyter notebook under pipenv is possible. See [jupyter_notebook.md](jupyter_notebook.md##in-virtual-environment-mode)
-
+Running jupyter notebook under pipenv is possible. See
+[jupyter_notebook.md](jupyter_notebook.md##in-virtual-environment-mode)
 
 ## pytest
 
 ### Random tips
 
 - Use `-s` flag to show `stdout` and `stderr`, which are otherwise not shown by default.
-
 
 ### Testing multiple paramters for a test
 
@@ -647,40 +625,40 @@ def test_hello(yup_docker, expected):
     assert output == expected
 ```
 
-
 ### xfail
 
-Use [`xfail`](https://docs.pytest.org/en/latest/skipping.html#xfail-mark-test-functions-as-expected-to-fail) for test cases that are expected to fail.
+Use [`xfail`](https://docs.pytest.org/en/latest/skipping.html#xfail-mark-test-functions-as-expected-to-fail) for test
+cases that are expected to fail.
 
-- [`raises` parameter](https://docs.pytest.org/en/latest/skipping.html#raises-parameter) can be used to ensure fail is due to expected exception.
-- They can be used with [`@pytest.mark.parametrize`](https://docs.pytest.org/en/latest/skipping.html#skip-xfail-with-parametrize) as well.
-
+- [`raises` parameter](https://docs.pytest.org/en/latest/skipping.html#raises-parameter) can be used to ensure fail is
+  due to expected exception.
+- They can be used with
+  [`@pytest.mark.parametrize`](https://docs.pytest.org/en/latest/skipping.html#skip-xfail-with-parametrize) as well.
 
 ### Auto-run tests on saving
 
 Install plugin [pytest-xdist](https://docs.pytest.org/en/3.0.0/xdist.html) and then use `-f` flag in pytest command.
 
-!!! info
-    This `-f` flag suppresses color output; Use [`--color=yes`](https://stackoverflow.com/a/24450942/3998252) to restore colors.
+!!! info This `-f` flag suppresses color output; Use [`--color=yes`](https://stackoverflow.com/a/24450942/3998252) to
+    restore colors.
 
 ### Coverage
 
 https://pytest-cov.readthedocs.io/en/latest/readme.html#id1
 
-Simple execution:
-`py.test --cov=myproj tests/`
+Simple execution: `py.test --cov=myproj tests/`
 
-Generate reports:
-`py.test --cov-report term --cov=myproj tests/`
+Generate reports: `py.test --cov-report term --cov=myproj tests/`
 
 --cov-report takes values html, xml, term and annotate
 
-
 ## temp files/dir
 
-[Built-in module `tempfile`](https://docs.python.org/2/library/tempfile.html) helps to easily manage temp files/dirs. They will get deleted automatically when the script exits, unless mentioned otherwise.  They can be named or unnamed.
+[Built-in module `tempfile`](https://docs.python.org/2/library/tempfile.html) helps to easily manage temp files/dirs.
+They will get deleted automatically when the script exits, unless mentioned otherwise.  They can be named or unnamed.
 
 Example:
+
 ```py
 import tempfile
 
@@ -697,5 +675,3 @@ with open(tmp.name) as f:
     for line in f:
         ... # more things here
 ```
-
-

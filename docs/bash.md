@@ -8,7 +8,6 @@
 
 [Source](https://stackoverflow.com/a/10383546/3998252)
 
-
 ## Safety first
 
 ```sh
@@ -20,14 +19,16 @@ set -x    # print command before executing; useful for debugging
 set -euo pipefail   # (unofficial) bash strict mode
 ```
 
-Source [1](https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/), [2](http://redsymbol.net/articles/unofficial-bash-strict-mode/)
-
+Source [1](https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/),
+[2](http://redsymbol.net/articles/unofficial-bash-strict-mode/)
 
 ## getopts for parsing options and arguments
 
-On Unix-like operating systems, `getopts` is a builtin command of the Bash shell. It parses command options and arguments, such as those passed to a shell script.
+On Unix-like operating systems, `getopts` is a builtin command of the Bash shell. It parses command options and
+arguments, such as those passed to a shell script.
 
-[Here is a good tutorial](https://www.computerhope.com/unix/bash/getopts.htm) on this topic. Example script from this tutorial.
+[Here is a good tutorial](https://www.computerhope.com/unix/bash/getopts.htm) on this topic. Example script from this
+tutorial.
 
 ```sh
 #!/bin/bash
