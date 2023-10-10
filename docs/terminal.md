@@ -109,7 +109,21 @@ Works with `nohup` as well.
 
 [Source](https://superuser.com/a/751809)
 
-## Version control
+## Git
+
+### Some useful commands
+
+```sh
+# show remote info
+git remote show origin
+
+# change to new remote
+git remote set-url origin new.git.url/here
+
+# remove local branches that are not in remote anymore
+git remote prune origin --dry-run
+git remote prune origin
+```
 
 ### Git submodule
 
