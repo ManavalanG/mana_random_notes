@@ -1,12 +1,13 @@
 # Random notes
 
-This is a place to store random notes, tips and tricks I find useful for the future me. 
+This is a place to store random notes, tips and tricks I find useful for the future me.
 
 Website - https://mana-random-notes.readthedocs.io/
 
 ## Read the Docs for hosting
 
-[mkdocs](https://www.mkdocs.org/) is used to serve up the static website, and [Read the Docs](https://docs.readthedocs.io/) is used for hosting it online. 
+[mkdocs](https://www.mkdocs.org/) is used to serve up the static website, and [Read the
+Docs](https://docs.readthedocs.io/) is used for hosting it online.
 
 ### Use mkdocs for development
 
