@@ -1,0 +1,14 @@
+# top-most EditorConfig file
+root = true
+
+# global definitions
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_size = 4
+indent_style = space
+
+# override indents for specific filetypes
+[*.{md,yml,yaml,html,css,scss,js,cff}]
+indent_size = 2
