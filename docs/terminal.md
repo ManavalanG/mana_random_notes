@@ -120,9 +120,13 @@ git remote show origin
 # change to new remote
 git remote set-url origin new.git.url/here
 
-# remove local branches that are not in remote anymore
+# remove remote branches in local machine that are not in remote anymore
 git remote prune origin --dry-run
 git remote prune origin
+
+# remote local branches that have been merged
+git checkout main   # or master/develop
+git branch --merged | grep -v '\*\|master\|main\|develop' | xargs -n 1 git branch -d
 ```
 
 ### Git submodule
